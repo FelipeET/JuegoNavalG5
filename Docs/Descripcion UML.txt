@@ -1,5 +1,5 @@
 MatchBrowser:
--Toma datos de jugador y permite elegir una Dificultad (Facil, Medio, Dificil).
+-Toma datos de jugador y permite elegir una Dificultad (Facil, Medio, Dificil) y un tipo de oponente (Player o IA).
 
 MatchSetup:
 -Une dos jugadores, les asigna un tablero a cada uno.
@@ -41,6 +41,15 @@ UsePower: En base al poder que se usa aplica el efecto sobre el tablero rival.
 AddPoints: Una vez finalizada la partida le agrega al jugador vencedor una cierta canitdad de puntos.
 WinnerIs: Determina el ganador y termina la partida.
 ChangeBoard: Cambia el estado de las casillas del tablero dependiendo de las acciones realizadas sobre las mismas.
+
+ImpTablero:
+-imprime un tablero al iniciar la partida y a medida que este se actualiza.
+
+IA:
+BuildBoard: arma un tablero para la IA en base a la dificuktad elegida por el jugador.
+PlaceRandomBoats: coloca botes en posiciones validas pero aleatorias en el tablero de la IA.
+
+
 
 Extras agregadas por el equipo:
 Poderes (Powers).
