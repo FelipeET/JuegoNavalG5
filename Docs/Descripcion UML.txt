@@ -1,0 +1,49 @@
+MatchBrowser:
+-Toma datos de jugador y permite elegir una Dificultad (Facil, Medio, Dificil).
+
+MatchSetup:
+-Une dos jugadores, les asigna un tablero a cada uno.
++SetBarcos(tablero1, tablero2)
+-Le permite a los jugadores posicionar sus barcos en sus respectivos tableros mediante el uso de la clase BoardSetup.
+
+BoardSetup:
+-Mediante una Orientacion (Horizontal, Vertical) y una posicion inicial (Coordenadas) permite posicionar los barcos en el tablero de cada jugador.
+
+MatchInitializer:
+-Toma 2 jugadores de una cola de espera e inicializa la partida.
+
+Barco:
+-Mediante herencia crea distintos tipos de barcos, con un nombre, longitud y simbolo identificador distinto para cada uno.(Submarino, Portaaviones, Crucero, Destructor)
+
+Tablero:
+-Mediante herencia crea tableros dependiendo de la dificultad de la partida que haya elegido el jugador.
+
+CheckCoordenada:
+-Verifica que las coordenadas donde se quiera posicionar el barco en relacion a su orientacion sea valida.
+
+Player:
+-Guarda nombre y puntos del jugador.
+
+Ranking:
+-Agrega jugadores a una lista ordenada en base a los puntos (Mayor a menor).
+
+Powers
+-Crea y guarda nombre de una habilidad que podremos utilizar a lo largo de la partida.
+
+Logica:
+-Se encarga del funcionamiento logico de la partida.
+GetTurnos: Devuelve el turno en el cual se encuentra la partida.
+Strike: Corrobora si es posible disparar a cierta coordenada.
+WasStriked: Corrobora si se disparo en una determinada coordenada.
+Visto: Corrobora si una coordenada ya fue descubierta.
+Mostar: Cambia el icono de la casilla dependiendo del estado de la misma. 
+UsePower: En base al poder que se usa aplica el efecto sobre el tablero rival.
+AddPoints: Una vez finalizada la partida le agrega al jugador vencedor una cierta canitdad de puntos.
+WinnerIs: Determina el ganador y termina la partida.
+ChangeBoard: Cambia el estado de las casillas del tablero dependiendo de las acciones realizadas sobre las mismas.
+
+Extras agregadas por el equipo:
+Poderes (Powers).
+Ranking (Ranking de jugadores).
+IA(Bot rival). 
+3 Dificultades del tablero.
