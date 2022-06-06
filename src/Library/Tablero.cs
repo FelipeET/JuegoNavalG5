@@ -5,24 +5,26 @@ namespace PII_Batalla_Naval
 {
     public class Tablero
     {
+        private int cantBarcosTotal = 4;
+        private int cantBuquesPerm = 1;
+        private int cantSubPerm = 1;
+        private int cantDesPerm = 1;
+        private int cantPortAvPerm = 1;
         private int largo = 6;
-        private int ancho = 6;
         private int [,] board; 
-        private int cantBarcos = 4;
         
         public Tablero ()
         {
-            int[,] tablero = new int [largo, ancho];
-            this.board = tablero;
+            int[,] board = new int [largo,largo];
+            this.board = board;
         }
-
-        public void ArmarTablero()
+      public void ArmarTablero()
         {  
             for (int y=0; y < largo; y++)
             {
-                for (int x=0; x < ancho; x++)
+                for (int x=0; x < largo; x++)
                 {
-                    board[x,y] = 0;
+                    this.board[x,y] = 0; 
                 }
             }   
         }
@@ -34,10 +36,45 @@ namespace PII_Batalla_Naval
             }
         }
 
-        public int CantBarcos{
+        public int CantBarcosTotal{
             get {
-                return cantBarcos;
+                return cantBarcosTotal;
             }
+        }
+
+        public int CantBuquesPerm{
+            get {
+                return cantBuquesPerm;
+            }
+        }
+
+        public int CantSubPerm{
+            get {
+                return cantSubPerm;
+            }
+        }
+
+        public int CantDestPerm{
+            get {
+                return cantDesPerm;
+            }
+        }
+
+        public int CantPortAvPerm{
+            get {
+                return cantPortAvPerm;
+            }
+        }
+
+        public int Largo{
+            get {
+                return largo;
+            }
+        }
+
+        public int [,] GetBoard() 
+        {
+            return this.board;
         }
     }
 }
