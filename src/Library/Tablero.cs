@@ -29,6 +29,30 @@ namespace PII_Batalla_Naval
             }   
         }
 
+        public bool DentroDeLimites(int x, int y)
+        {
+            if (x <= this.Largo && y <= this.Largo)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool NoOcupada(int x, int y)
+        {
+            if (this.Board[x,y] == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public int [,] Board
         {
             get{

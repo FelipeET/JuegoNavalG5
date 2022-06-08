@@ -10,8 +10,9 @@ namespace PII_Batalla_Naval
         private Tablero B; //var que representa el tablero
         private int Width; //var que representa el ancho del tablero
         private int Height; //var que representa altura del tablero
-        public string[] alfabeto = {"A", "B", "C", "D", "E", "F"};
-
+        //public string[] alfabeto = {"0", "1", "2", "3", "4", "5"};
+        public string[] numeros = {"0", "1", "2", "3", "4", "5"};
+        public StringBuilder s = new StringBuilder();
         public ImpTab (Tablero b, int width, int height)
         {
             this.B = b;
@@ -21,14 +22,19 @@ namespace PII_Batalla_Naval
         
         public void ImpEnPnatalla()
         {
-            Console.Clear();
-            StringBuilder s = new StringBuilder();
-            for (int y = 0; y < Height - 1; y++)
+            //Console.Clear();
+            //StringBuilder s = new StringBuilder();
+            for (int y = 0; y < Height; y++)
             {
-                s.Append(alfabeto[y]);
+                s.Append(numeros[y]);
                 for (int x = 0; x < Width; x++)
                 {
                     if(this.B.GetBoard()[x,y] == 0)
+                    {
+                        s.Append("|O|");
+                        s.Append(" ");
+                    }
+                    if(this.B.GetBoard()[x,y] == 6)
                     {
                         s.Append("|O|");
                         s.Append(" ");
@@ -61,8 +67,13 @@ namespace PII_Batalla_Naval
                 }
                 s.Append("\n");
             }
+            for (int z = 0; z<numeros.Length; z++)
+            {
+                s.Append("  ");
+                s.Append(numeros[z]);
+                s.Append(" ");
+            }
             Console.WriteLine(s.ToString());
-            s.Clear();
         }
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "f9iiDKqgCwq3WVXDjhO9ifxnP6gV/sT/n84H3yYIe9aC4jq7PDzz4ewmcbOf/CtnlhVYLWzT89XATAKlCmAQkA==",
+  "dgSpecHash": "gYck4bAAGsWH03wQjrkHke/vb5dHnlOqM8p5rwgTxyBjQvTzQ8cr3Xmjz58sXpyeg0OVZHb3G5k2ZxLa7bzS1A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\GOF\\PII_Game_Of_Life\\src\\Library\\Library.csproj",
+  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\BSP2\\PII_Batalla_Naval\\src\\Library\\Library.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
