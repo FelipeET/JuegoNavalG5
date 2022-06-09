@@ -11,7 +11,7 @@ namespace PII_Batalla_Naval
         private int Width; //var que representa el ancho del tablero
         private int Height; //var que representa altura del tablero
         public string[] numbers = {"0", "1", "2", "3", "4", "5"};
-        
+
         //public StringBuilder s = new StringBuilder();
         public PrintHidden (Board b, int width, int height)
         {
@@ -22,6 +22,7 @@ namespace PII_Batalla_Naval
         public void PrintInScreen()
         {
             StringBuilder s = new StringBuilder();
+            
             for (int y = 0; y < Height ; y++)
             {
                 s.Append(numbers[y]);
