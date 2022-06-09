@@ -1,13 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vCEaaF+mYLDQRYLdjoIHN509ATEYZqPUTVKHy7o5mmZa7bQBxinl07zPZjBq8Cy3aBn5KXUlKW5dRyF+FI77TA==",
+  "dgSpecHash": "lVhPWIHAKL+QJPwtyU+ho/6Y/iJABocS3+dcD7O0/ydpB7vn7yhnAepOrPKzvBT/TRDKWerW9WtXlr49QfpePQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\BSP2\\PII_Batalla_Naval\\src\\Program\\Program.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.16\\microsoft.netcore.app.host.win-x64.5.0.16.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\Felipe\\OneDrive\\Desktop\\JuegoNaval\\JuegoNavalG5\\src\\Program\\Program.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

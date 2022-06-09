@@ -38,9 +38,9 @@ namespace PII_Batalla_Naval
         public Player(string _name)
         {
             this.name = _name;
-            string cadenaAleatoria = string.Empty;
-            cadenaAleatoria = Guid.NewGuid().ToString();
-            this.id = cadenaAleatoria;
+            string randomChain = string.Empty;
+            randomChain = Guid.NewGuid().ToString();
+            this.id = randomChain;
         }
     }
 }
