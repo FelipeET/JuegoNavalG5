@@ -3,5 +3,5 @@ public interface IBoat
 {
     public string Name {get;}
     public int ID {get;}
-    public int BoatLenght {get;}
+    public int BoatLength {get;}
 }

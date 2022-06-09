@@ -2,7 +2,7 @@ using System;
 public class Vessel : IBoat
 {
     private int id = 1;
-    private int boatLenght = 1;
+    private int boatLength = 1;
     private string name = "Buque";
 
     public int ID{
@@ -11,9 +11,9 @@ public class Vessel : IBoat
         }
     }
 
-    public int BoatLenght{
+    public int BoatLength{
         get{
-            return boatLenght;
+            return boatLength;
         }
     }
 

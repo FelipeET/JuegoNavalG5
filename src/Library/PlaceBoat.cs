@@ -11,7 +11,7 @@ namespace PII_Batalla_Naval
         {
             if (count < board.OnBoardBoats)
             {
-                if (tab.InLimits(x,y) && tab.NotOcuppied(x,y))
+                if (board.InLimits(x,y) && board.NotOcuppied(x,y))
                 {
                     if (ori == Orientation.Vertical)
                     {
@@ -50,7 +50,7 @@ namespace PII_Batalla_Naval
                             {
                                 board.GetBoard()[x + j, y] = boat.ID;
                             }
-                            cont++;
+                            count++;
                         }
                         else 
                         {

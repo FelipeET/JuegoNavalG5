@@ -39,7 +39,7 @@ namespace PII_Batalla_Naval
 
         public bool NotOcuppied(int x, int y)
         {
-            if (this.Board[x,y] == 0)
+            if (this.board[x,y] == 0)
             {
                 return true;
             }

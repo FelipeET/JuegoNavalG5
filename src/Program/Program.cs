@@ -24,7 +24,7 @@ namespace PII_Batalla_Naval
             hit1.Shoot(tablerop1, 0 , 4);
             hit1.Shoot(tablerop1, 4 , 4);
         
-            PrintBoard imp1 = new PrintBoard(tablerop1, tablerop1.Tamano);
+            PrintBoard imp1 = new PrintBoard(tablerop1, tablerop1.Length, tablerop1.Length);
             
             imp1.PrintInScreen();
 
