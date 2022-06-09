@@ -22,7 +22,7 @@ Detalles de la Traduccion
 -CantBarcosTotal/OnBoardBoats
 -DentroDeLimites/InLimits
 -NoOcupada/NotOcuppied
--Longitud/BoatLenghth
+-Longitud/BoatLength
 -Largo/Length
 -cantBarcosTotal/OnBoardBoats
 -largo/length
