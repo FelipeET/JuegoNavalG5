@@ -7,7 +7,7 @@ Detalles de la Traduccion
 -cadenaAleatoria/randomChain
 -Disparar/Shoot
 -Tablero/Board
--tab/Board
+-tab/board
 -Alfabeto/Alphabet
 -numeros/numbers
 -ImpEnPnatalla/PrintInScreen
