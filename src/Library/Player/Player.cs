@@ -42,5 +42,10 @@ namespace PII_Batalla_Naval
             randomChain = Guid.NewGuid().ToString();
             this.id = randomChain;
         }
+
+        public void AddVp (int vpToAdd)
+        {
+            this.vp += vpToAdd;
+        }
     }
 }
