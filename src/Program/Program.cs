@@ -1,34 +1,35 @@
 ﻿using System;
 using System.IO;
-using System.Text;
+using System.Linq;
 using System.Threading;
-
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 namespace PII_Batalla_Naval
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Player p1 = new Player("Felipe");
-            Console.WriteLine(p1.Id);
-            Console.WriteLine(p1.Name);
-            Console.WriteLine(p1.VP);
+            string message;
+            Console.WriteLine("Bienvenido a Batalla Naval, ingresa alguno de los siguientes comandos:");
+            Console.WriteLine("> Jugar (1v1)");
+            Console.WriteLine("> Salir");
+            message = Console.ReadLine();
+        }
 
-            Board tablerop1 = new Board();
-            tablerop1.BuildBoard();
+        public static async Task HandleMessageRecived(string message)
+        {
+            string response;
 
-            PlaceBoat poner = new PlaceBoat();
-            poner.AddBoat(tablerop1, 1 , 1,Orientation.Horizontal, new Submarin());
+            switch(message.ToLower().Trim())
+            {
+                case "jugar":
+                    
+                    Logic game = new Logic();
 
-            Hit hit1= new Hit();
-            hit1.Shoot(tablerop1, 0 , 4);
-            hit1.Shoot(tablerop1, 4 , 4);
-        
-            PrintBoard imp1 = new PrintBoard(tablerop1, tablerop1.Length, tablerop1.Length);
-            
-            imp1.PrintInScreen();
-
-
+            }
 
         }
     }

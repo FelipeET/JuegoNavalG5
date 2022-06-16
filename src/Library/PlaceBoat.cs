@@ -7,6 +7,8 @@ namespace PII_Batalla_Naval
     {
         private bool flag = false;
         private int count = 0;
+        private bool allBoatsReady;
+
         public void AddBoat (Board board, int y, int x, Orientation ori, IBoat boat)
         {
             if (count < board.OnBoardBoats)
@@ -71,6 +73,22 @@ namespace PII_Batalla_Naval
                     }
                 }
             } 
+        }
+
+        public int Count
+        {
+            get 
+            {
+                return count;
+            }
+        }
+
+        public bool AllBoatsReady
+        {
+            get 
+            {
+                return count == 4;
+            }
         }
     }
 }
