@@ -1,71 +1,78 @@
-/*using System;
+using System;
+using System.IO;
 
 namespace PII_Batalla_Naval
 {
     public class Logic
     {
-        public bool[,] GameBoard;
-         int BoardWidth;
-         int BoardHeight;
+        private Player p1;
+        private Player p2;
+        private Board b1;
+        private Board b2;
+        private Hit h1 = new Hit();
+        private Hit h2 = new Hit();
+        private PlaceBoat put1 = new PlaceBoat();
+        private PlaceBoat put2 = new PlaceBoat();
+        PrintBoard print1;
+        PrintBoard print2;
+        PrintHidden hidden;
+        PrintRivalBoard printPlayer1;
+        PrintRivalBoard printPlayer2;
 
-        public Logic (bool[,] gameBoard)
+        public int p;
+
+        public Logic (Player p1_, Player p2_, Board b1_, Board b2_)
         {
-            this.GameBoard = gameBoard;
-            this.BoardHeight = GameBoard.GetLength(1);
-            this.BoardWidth = GameBoard.GetLength(0);
+            this.p1 = p1_;
+            this.p2 = p2_;
+            this.b1 = b1_;
+            this.b2 = b2_;
         }
 
         public void LogGame()
         {
-            bool[,] cloneboard = new bool[BoardWidth, BoardHeight];
-            for (int x = 0; x < BoardWidth; x++)
+            while (!put1.AllBoatsReady && !put2.AllBoatsReady)
             {
-                for (int y = 0; y < BoardHeight; y++)
+                while (put1.Count < 4)
                 {
-                    int aliveNeighbors = 0;
-                    for (int i = x-1; i<=x+1;i++)
-                    {
-                        for (int j = y-1;j<=y+1;j++)
-                        {
-                            if(i>=0 && i<BoardWidth && j>=0 && j < BoardHeight && GameBoard[i,j])
-                            {
-                                aliveNeighbors++;
-                            }
-                        }
-                    }
-                    if(GameBoard[x,y])
-                    {
-                        aliveNeighbors--;
-                    }
-                    if (GameBoard[x,y] && aliveNeighbors < 2)
-                    {
-                        //Celula muere por baja población
-                        cloneboard[x,y] = false;
-                    }
-                    else if (GameBoard[x,y] && aliveNeighbors > 3)
-                    {
-                        //Celula muere por sobrepoblación
-                        cloneboard[x,y] = false;
-                    }
-                    else if (!GameBoard[x,y] && aliveNeighbors == 3)
-                    {
-                        //Celula nace por reproducción
-                        cloneboard[x,y] = true;
-                    }
-                    else
-                    {
-                        //Celula mantiene el estado que tenía
-                        cloneboard[x,y] = GameBoard[x,y];
-                    }
+                   
+                }
+
+                while (put2.Count <4)
+                {
+
+                }
+
+            }
+        }
+
+        public void StartGame()
+        {
+            while (h1.HitCounter < 10 || h2.HitCounter <10)
+            {
+                while (!h1.EffectedShot)
+                {
+
+                }
+
+                while (!h2.EffectedShot)
+                {
+
                 }
             }
-            GameBoard = cloneboard;
-            cloneboard = new bool[BoardWidth, BoardHeight];
         }
-         public bool[,] NextGen()
+
+        public Orientation GetOri(string ori)
         {
-            this.LogGame();
-            return GameBoard;
+
+            if (ori == "horizontal")
+            {
+                return Orientation.Horizontal;
+            }
+            else
+            {
+                return Orientation.Vertical;
+            }
         }
-    }
-}   */
+    }  
+}
