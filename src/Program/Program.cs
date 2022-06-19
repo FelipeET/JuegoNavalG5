@@ -14,7 +14,7 @@ namespace PII_Batalla_Naval
         {
             string message;
             Console.WriteLine("Bienvenido a Batalla Naval, ingresa alguno de los siguientes comandos:");
-            Console.WriteLine("> Jugar (1v1)");
+            Console.WriteLine("> Jugar");
             Console.WriteLine("> Salir");
             message = Console.ReadLine();
         }

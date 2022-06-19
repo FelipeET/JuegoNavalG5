@@ -5,14 +5,7 @@ namespace PII_Batalla_Naval
 {
     public class Logic
     {
-        private Player p1;
-        private Player p2;
-        private Board b1;
-        private Board b2;
-        private Hit h1 = new Hit();
-        private Hit h2 = new Hit();
-        private PlaceBoat put1 = new PlaceBoat();
-        private PlaceBoat put2 = new PlaceBoat();
+       
         PrintBoard print1;
         PrintBoard print2;
         PrintHidden hidden;
@@ -21,30 +14,24 @@ namespace PII_Batalla_Naval
 
         public int p;
 
-        public Logic (Player p1_, Player p2_, Board b1_, Board b2_)
+        public Logic (HandlerSetGame game)
         {
-            this.p1 = p1_;
-            this.p2 = p2_;
-            this.b1 = b1_;
-            this.b2 = b2_;
+            this.Game = game;
         }
 
         public void LogGame()
         {
-            while (!put1.AllBoatsReady && !put2.AllBoatsReady)
+          
+             while (!Game.p1.b1.Count <= 3)
             {
-                while (put1.Count < 4)
-                {
-                   
-                }
-
-                while (put2.Count <4)
-                {
-
-                }
-
+                Caso contador = 0 //submarino
+                caso contador = 1 //buque
             }
+
+            while (!Game.p2.b2.AllBoatsReady)
         }
+
+
 
         public void StartGame()
         {
