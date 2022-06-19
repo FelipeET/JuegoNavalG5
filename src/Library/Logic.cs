@@ -41,19 +41,22 @@ namespace PII_Batalla_Naval
         {
             while (Match.P1.PlayerBoard.HitCounter < 10 || Match.P2.PlayerBoard.HitCounter < 10)
             {
+                Match.P1.StatusOnTurn();
+
                 while (Match.P1.PlayerStatus == Status.OnTurn)
                 {
                     PlayerMove(Match.P1, Match.P2);
-                    printPlayer2.PrintInScreen();
+                    printPlayer1.PrintInScreen();
+                    print1.PrintInScreen();
                 }
 
                 while (Match.P2.PlayerStatus == Status.OnTurn)
                 {
                     PlayerMove(Match.P2, Match.P1);
-                    printPlayer1.PrintInScreen();
+                    printPlayer2.PrintInScreen();
+                    print2.PrintInScreen();
                 }
             }
-
             
             if (Match.P1.PlayerBoard.HitCounter >= 10)
             {
@@ -154,7 +157,7 @@ namespace PII_Batalla_Naval
                     Console.WriteLine("Ingrese una coordenada y una orientacion (X, Y, horizontal/vertical separadas por un espacio entre ellas) para su buque");
                     message = Console.ReadLine();
                     coords = message.Split(" ");
-                    Match.P1.PlayerBoard.AddBoat(Match.P1.PlayerBoard, Int32.Parse(coords[0]), Int32.Parse(coords[1]), GetOri(coords[2]), vessel);
+                    Match.P1.PlayerBoard.AddBoat(Match.P1.PlayerBoard, Int32.Parse(coords[0]), Int32.Parse(coords[1]), GetOri(coords[0]), vessel);
                     Console.WriteLine("El barco se coloco correctaente:");
                     print1.PrintInScreen();
                     break;
@@ -170,7 +173,6 @@ namespace PII_Batalla_Naval
         {
             string message;
             String[] coords;
-            player.StatusOnTurn();
 
             Console.WriteLine($"Turno {Match.Turns}");
             print1.PrintInScreen();
@@ -195,6 +197,7 @@ namespace PII_Batalla_Naval
 
             player.PlayerBoard.Shoot(enemigo.PlayerBoard, Int32.Parse(coords[0]), Int32.Parse(coords[1]));
             player.StatusWaiting();
+            enemigo.StatusOnTurn();
             Match.Turns++;
         }
     }
