@@ -1,6 +1,6 @@
 
 
-namespace II_Batalla_Naval
+namespace PII_Batalla_Naval
 {
     /// <summary>
     /// Interfaz para implementar el patrón Chain of Responsibility. En ese patrón se pasa un mensaje a través de una

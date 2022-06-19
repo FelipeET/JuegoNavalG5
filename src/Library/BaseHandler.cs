@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace II_Batalla_Naval
+namespace PII_Batalla_Naval
 {
     /// <summary>
     /// Clase base para implementar el patrón Chain of Responsibility. En ese patrón se pasa un mensaje a través de una
@@ -82,7 +82,7 @@ namespace II_Batalla_Naval
                 throw new InvalidOperationException("No hay palabras clave que puedan ser procesadas");
             }
 
-            return this.Keywords.Any(s => message.Text.Equals(s, StringComparison.InvariantCultureIgnoreCase));
+            return this.Keywords.Any(s => message.Equals(s, StringComparison.InvariantCultureIgnoreCase));
         }
 
         /// <summary>

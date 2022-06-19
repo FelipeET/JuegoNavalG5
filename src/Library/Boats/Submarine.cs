@@ -1,5 +1,5 @@
 using System;
-public class Submarin : IBoat
+public class Submarine : IBoat
 {
     private int id = 2;
     private int boatLenght = 2;

@@ -7,11 +7,18 @@ namespace PII_Batalla_Naval
     {
         private string name;
 
-        //private string id;
-
         private int vp = 0;
 
         private Board playerBoard;
+
+        private Status playerStatus;
+
+        public Player(string _name)
+        {
+            this.name = _name;
+            this.playerBoard = new Board();
+            this.playerBoard.BuildBoard();
+        }
 
         public string Name
         {
@@ -21,14 +28,6 @@ namespace PII_Batalla_Naval
             }   
         }
 
-        /*public string Id
-        {
-            get {
-                
-                return id;
-            }
-        }*/
-
         public int VP
         {
             get {
@@ -37,13 +36,30 @@ namespace PII_Batalla_Naval
             }
         }
 
-        public Player(string _name)
+        public Board PlayerBoard
         {
-            this.name = _name;
-            //string randomChain = string.Empty;
-            //randomChain = Guid.NewGuid().ToString();
-            //this.id = randomChain;
-            this.playerBoard = new Board();
+            get {
+                
+                return playerBoard;
+            }
+        }
+
+         public Status PlayerStatus
+        {
+            get {
+                
+                return playerStatus;
+            }
+        }
+
+        public void StatusOnTurn()
+        {
+            playerStatus = Status.OnTurn;
+        }
+
+        public void StatusWaiting()
+        {
+            playerStatus = Status.Waiting;
         }
 
         public void AddVp (int vpToAdd)
