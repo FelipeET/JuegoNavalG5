@@ -1,36 +1,22 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
+﻿
 namespace PII_Batalla_Naval
 {
     class Program
     {
         static void Main(string[] args)
         {
-            string message;
-            Console.WriteLine("Bienvenido a Batalla Naval, ingresa alguno de los siguientes comandos:");
-            Console.WriteLine("> Jugar");
-            Console.WriteLine("> Salir");
-            message = Console.ReadLine();
-        }
-
-        public static async Task HandleMessageRecived(string message)
-        {
-            string response;
-
-            switch(message.ToLower().Trim())
-            {
-                case "jugar":
-                    
-                    Logic game = new Logic();
-
-            }
-
+            /*Player p1 = new Player("joaco");
+            Player p2 = new Player("tareaP2");
+            Game g1 = new Game(p1, p2);
+            Logic log1 =  new Logic(g1);*/
+            Board b1 = new Board();
+            b1.BuildBoard();
+            b1.AddBoat(b1, 5, 1, Orientation.Horizontal, new Carrier());
+            b1.AddBoat(b1, 0, 0, Orientation.Horizontal, new Destructor());
+            b1.Shoot(b1, 1, 1);
+            b1.Shoot(b1, 5, 2);
+            PrintBoard print = new PrintBoard(b1, b1.Length, b1.Length);
+            print.PrintInScreen();
         }
     }
 }

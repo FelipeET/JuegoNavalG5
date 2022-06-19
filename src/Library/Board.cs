@@ -8,8 +8,8 @@ namespace PII_Batalla_Naval
         private int onBoardBoats = 4;
         private int lenght = 6;
         private int [,] board;
-        private int hitCounter; 
-        private bool effectedShot;
+        private int hitCounter = 0; 
+        //private bool effectedShot;
         private bool flag;
         private int count = 0;
         private int boatsReady = 0;
@@ -56,20 +56,20 @@ namespace PII_Batalla_Naval
 
         public void Shoot(Board board, int y, int x)
         {
-            effectedShot = false;
+            //effectedShot = false;
             
             if (board.InLimits(x, y) && board.GetBoard()[x,y] != 5 && board.GetBoard()[x,y] != 6)
             {
                 if(board.GetBoard()[x,y] == 0)
                 {
                     board.GetBoard()[x,y] = 6;
-                    effectedShot = true; 
+                    //effectedShot = true; 
                 }
                 if(board.GetBoard()[x,y] >= 1 && board.GetBoard()[x,y] <= 4)
                 {
                     board.GetBoard()[x,y] = 5;
-                    hitCounter++;
-                    effectedShot = true; 
+                    this.hitCounter++;
+                    //effectedShot = true; 
                 }
             }
             else 
@@ -99,17 +99,17 @@ namespace PII_Batalla_Naval
                         {
                             if (board.InLimits(x, y + i) && board.NotOcuppied(x, y + i))
                             {
-                                flag = true;
+                                this.flag = true;
                             }
                         }
-                        if (flag) 
+                        if (this.flag) 
                         {
                             for (int j = 0; j < boat.BoatLength; j++)
                             {
                                 board.GetBoard()[x, y + j] = boat.ID;
                             }
-                            count++;
-                            boatsReady++;
+                            this.count++;
+                            this.boatsReady++;
                         }
                         else 
                         {
@@ -122,17 +122,17 @@ namespace PII_Batalla_Naval
                         {
                             if (board.InLimits(x + i, y) && board.NotOcuppied(x + i, y))
                             {
-                                flag = true;
+                                this.flag = true;
                             }
                         }
-                        if (flag) 
+                        if (this.flag) 
                         {
                             for (int j = 0; j < boat.BoatLength; j++)
                             {
                                 board.GetBoard()[x + j, y] = boat.ID;
                             }
-                            count++;
-                            boatsReady++;
+                            this.count++;
+                            this.boatsReady++;
                         }
                         else 
                         {
@@ -154,7 +154,15 @@ namespace PII_Batalla_Naval
                 }
             } 
         }
-
+        
+        public void ResetBoard()
+        {
+            this.hitCounter = 0;
+            this.count = 0;
+            this.boatsReady = 0;
+            BuildBoard();
+        }
+        
         public int OnBoardBoats{
             get {
                 return this.onBoardBoats;
@@ -180,13 +188,13 @@ namespace PII_Batalla_Naval
             }
         }
 
-        public bool EffectedShot
+        /*public bool EffectedShot
         {
             get
             {
                 return effectedShot;
             }
-        }
+        }*/
 
         public int Count
         {
