@@ -56,6 +56,29 @@ namespace PII_Batalla_Naval
             Console.WriteLine(s.ToString());
         }
 
+        public void PrintHidden()
+        {
+            StringBuilder s = new StringBuilder();
+            
+            for (int y = 0; y < Height ; y++)
+            {
+                s.Append(numbers[y]);
+                for (int x = 0; x < Width; x++)
+                {
+                    s.Append("| |");
+                    s.Append(" ");
+                }
+                s.Append("\n");
+            }
+            for (int z = 0; z < numbers.Length; z++)
+                {
+                    s.Append("  ");
+                    s.Append(numbers[z]);
+                    s.Append(" ");
+                }
+            Console.WriteLine(s.ToString());
+        }
+
 
     }
 }
