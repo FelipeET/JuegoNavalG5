@@ -185,22 +185,22 @@ namespace PII_Batalla_Naval
             {
                 Console.WriteLine("Buque undido!");
             }
-            if (board.SubmarieOnBoard == 2)
-            {
-                Console.WriteLine("Submarino undido!");
-            }
-            if (board.DestructorOnBoard == 3)
-            {
-                Console.WriteLine("Destructor undido!");
-            }
-            if (board.CarrierOnBoard == 4)
-            {
-                Console.WriteLine("Porta Aviones undido!");
-            }
-            else
-            {
-                Console.WriteLine("Tocado!");
-            }   
+            else if (board.SubmarieOnBoard == 2)
+                {
+                    Console.WriteLine("Submarino undido!");
+                }
+                else if (board.DestructorOnBoard == 3)
+                    {
+                        Console.WriteLine("Destructor undido!");
+                    }
+                    else if (board.CarrierOnBoard == 4)
+                        {
+                            Console.WriteLine("Porta Aviones undido!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Tocado!");
+                        }   
         }
         
         public void ResetBoard()
