@@ -14,6 +14,11 @@ namespace PII_Batalla_Naval
             this.p2 = p2_;
         }
 
+        public void ResetTurns()
+        {
+            this.Turns = 1;
+        }
+
         public Player P1
         {
             get 

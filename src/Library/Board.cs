@@ -9,10 +9,13 @@ namespace PII_Batalla_Naval
         private int lenght = 6;
         private int [,] board;
         private int hitCounter = 0; 
-        //private bool effectedShot;
         private bool flag;
         private int count = 0;
         private int boatsReady = 0;
+        public int VesselOnBoard = 0;
+        public int SubmarieOnBoard = 0;
+        public int DestructorOnBoard = 0;
+        public int CarrierOnBoard = 0;
         
         public Board ()
         {
@@ -56,20 +59,21 @@ namespace PII_Batalla_Naval
 
         public void Shoot(Board board, int y, int x)
         {
-            //effectedShot = false;
             
             if (board.InLimits(x, y) && board.GetBoard()[x,y] != 5 && board.GetBoard()[x,y] != 6)
             {
                 if(board.GetBoard()[x,y] == 0)
                 {
                     board.GetBoard()[x,y] = 6;
-                    //effectedShot = true; 
+                    Console.WriteLine("Agua!");
                 }
+
                 if(board.GetBoard()[x,y] >= 1 && board.GetBoard()[x,y] <= 4)
                 {
+                    board.CountSunkens(board, y, x);
                     board.GetBoard()[x,y] = 5;
-                    this.hitCounter++;
-                    //effectedShot = true; 
+                    board.hitCounter++;
+                    board.IsSunken(board);
                 }
             }
             else 
@@ -154,12 +158,60 @@ namespace PII_Batalla_Naval
                 }
             } 
         }
+
+        public void CountSunkens(Board board, int x, int y)
+        {
+            if (board.GetBoard()[x,y] == 1)
+            {
+                board.VesselOnBoard++;
+            }
+            if (board.GetBoard()[x,y] == 2)
+            {
+                board.SubmarieOnBoard++;
+            }
+            if (board.GetBoard()[x,y] == 3)
+            {
+                board.DestructorOnBoard++;
+            }
+            if (board.GetBoard()[x,y] == 4)
+            {
+                board.CarrierOnBoard++;
+            }
+        }
+
+        public void IsSunken(Board board)
+        {
+            if (board.VesselOnBoard == 1)
+            {
+                Console.WriteLine("Buque undido!");
+            }
+            if (board.SubmarieOnBoard == 2)
+            {
+                Console.WriteLine("Submarino undido!");
+            }
+            if (board.DestructorOnBoard == 3)
+            {
+                Console.WriteLine("Destructor undido!");
+            }
+            if (board.CarrierOnBoard == 4)
+            {
+                Console.WriteLine("Porta Aviones undido!");
+            }
+            else
+            {
+                Console.WriteLine("Tocado!");
+            }   
+        }
         
         public void ResetBoard()
         {
             this.hitCounter = 0;
             this.count = 0;
             this.boatsReady = 0;
+            this.VesselOnBoard = 0;
+            this.SubmarieOnBoard = 0;
+            this.DestructorOnBoard = 0;
+            this.CarrierOnBoard = 0;
             BuildBoard();
         }
         
@@ -187,14 +239,6 @@ namespace PII_Batalla_Naval
                 return hitCounter;
             }
         }
-
-        /*public bool EffectedShot
-        {
-            get
-            {
-                return effectedShot;
-            }
-        }*/
 
         public int Count
         {
