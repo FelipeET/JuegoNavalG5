@@ -148,6 +148,7 @@ namespace PII_Batalla_Naval
                     {   
                         int x = Int32.Parse(coords[0]);
                         int y = Int32.Parse(coords[1]);
+                        Console.WriteLine("A");
                         if (x < 0 || x > 5 || y < 0 || y > 5)
                         {
                             throw new IndexCheckerException("Las coordenadas deben ser un int entre 0 y 5.");
