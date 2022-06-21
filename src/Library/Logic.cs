@@ -7,15 +7,11 @@ namespace PII_Batalla_Naval
     public class Logic
     {
         private Game Match; 
-        //private List<string> PandTInfo = new List<string>();
-        //private List<Board> boardsInfo = new List<Board>();
-        private string winner;
-        PrintBoard print1; 
-        PrintBoard print2; 
-        //PrintHidden hidden; 
-        PrintRivalBoard printPlayer1;
-        PrintRivalBoard printPlayer2;
-        //PrintBoard printinfo;
+        private PrintBoard print1; 
+        private PrintBoard print2; 
+        private PrintRivalBoard printPlayer1;
+        private PrintRivalBoard printPlayer2;
+        private MatchInfo info;
         private string message;
 
         public Logic (Game game)
@@ -23,9 +19,9 @@ namespace PII_Batalla_Naval
             this.Match = game;
             this.print1 = new PrintBoard(Match.P1.PlayerBoard, Match.P1.PlayerBoard.Length, Match.P1.PlayerBoard.Length);
             this.print2 = new PrintBoard(Match.P2.PlayerBoard, Match.P2.PlayerBoard.Length, Match.P2.PlayerBoard.Length);
-            //this.hidden = new PrintHidden(Match.P1.PlayerBoard, Match.P1.PlayerBoard.Length, Match.P1.PlayerBoard.Length);
             this.printPlayer1 = new PrintRivalBoard(Match.P2.PlayerBoard, Match.P2.PlayerBoard.Length, Match.P2.PlayerBoard.Length);
             this.printPlayer2 = new PrintRivalBoard(Match.P1.PlayerBoard, Match.P1.PlayerBoard.Length, Match.P1.PlayerBoard.Length);
+            this.info = new MatchInfo();
         }
 
         public void LogGame()
@@ -69,7 +65,7 @@ namespace PII_Batalla_Naval
             if (Match.P1.PlayerBoard.HitCounter == 10)
             {
                 Match.P2.AddVp(10);
-                this.winner = Match.P2.Name;
+                Match.winner = Match.P2.Name;
                 Console.WriteLine($"{Match.P2.Name} es el ganador!");
                 Console.WriteLine($"Los Puntos de Victoria de {Match.P2.Name} aumentaron en +10");
                 Console.WriteLine($"Los Puntos de Victoria de {Match.P2.Name} son: {Match.P2.VP}");
@@ -77,21 +73,17 @@ namespace PII_Batalla_Naval
             else
             {
                 Match.P1.AddVp(10);
-                this.winner = Match.P1.Name;
+                Match.winner = Match.P1.Name;
                 Console.WriteLine($"{Match.P1.Name} es el ganador!");
                 Console.WriteLine($"Los Putos de Victoria de {Match.P1.Name} aumentaron en +10");
                 Console.WriteLine($"Los Putos de Victoria de {Match.P1.Name} son: {Match.P1.VP}");
             }
 
-            //PandTInfo.Add($"Batalla entre {Match.P1.Name} y {Match.P2.Name} / Fecha del encuentro: {DateTime.Now.ToString("dd'/'MM'/'yyyy")} / Duracion: {Match.Turns} turnos/ El ganador fue: {this.winner}"); 
-            //boardsInfo.Add(Match.P1.PlayerBoard);
-            //boardsInfo.Add(Match.P2.PlayerBoard);
+            info.GamesPlayed();
+            info.AddInfo(Match);
 
             Match.P1.PlayerBoard.ResetBoard();
-            Match.P2.PlayerBoard.ResetBoard();
-            Match.ResetTurns();
-            this.winner = null;  
-            
+            Match.P2.PlayerBoard.ResetBoard();    
         }
 
         public Orientation GetOri(string ori)
@@ -131,26 +123,46 @@ namespace PII_Batalla_Naval
                         throw new OrientationCheckerException("Orientation Error: Invalid Orientation.");
                     }
 
+                    bool test = false;
+
                     try
                     {   
+                        //Console.WriteLine("PRUEBA 1");
                         int x = Int32.Parse(coords[0]);
                         int y = Int32.Parse(coords[1]);
+                        //Console.WriteLine("PRUEBA 2");
                         if (x < 0 || x > 5 || y < 0 || y > 5)
                         {
+                            //Console.WriteLine("PRUEBA 3");
                             throw new Exception("recuerda que las coordenadas deben ser numeros entre 0 y 5");
                         }
+                        //Console.WriteLine("PRUEBA 4");
                         if (!player.PlayerBoard.NotOcuppied(x,y))
                         {
+                            //Console.WriteLine("PRUEBA 5");
                             throw new Exception("posicion ya ocupada, intente nuevamente");
                         }
                         else if (!player.PlayerBoard.InLimits(x, y))
                         {
+                            //Console.WriteLine("PRUEBA 6");
                             throw new Exception("posicion fuera de limites, intente nuevamente");   
+                        }
+                        else{
+                            test = true;
                         }
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("coordenadas invalidas: ", e);
+                        Console.WriteLine("Coordenadas invalidas: ", e);
+                    }
+                    finally
+                    {
+                        if (test == false)
+                        {
+                            Console.WriteLine("Coordenada invalida, intente nuevamnte (recuerda que las coordenadas deben ser numeros entre 0 y 5)");
+                            message = Console.ReadLine();
+                            coords = message.Split();
+                        }
                     }
 
                     player.PlayerBoard.AddBoat(player.PlayerBoard, Int32.Parse(coords[0]), Int32.Parse(coords[1]), GetOri(coords[2]), carrier);
@@ -237,23 +249,6 @@ namespace PII_Batalla_Naval
             enemigo.StatusOnTurn();
             Match.Turns++;
         }
-
-        /*
-        public void ShowMatchInfo()
-        {
-            Console.WriteLine("-----------------------");
-            foreach (string info in PandTInfo)
-            {
-                Console.WriteLine(info);
-            }
-            Console.WriteLine("-----------------------");
-            foreach(Board board in boardsInfo)
-            {
-              printinfo = new PrintBoard(board, board.Length, board.Length);
-              printinfo.PrintInScreen();  
-            }
-            Console.WriteLine("-----------------------");
-        }*/
     }
 }  
 

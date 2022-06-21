@@ -8,15 +8,12 @@ namespace PII_Batalla_Naval
         private Player p1;
         private Player p2;
         public int Turns = 1;
+        public string winner;
+
         public Game (Player p1_, Player p2_)
         {
             this.p1 = p1_;
             this.p2 = p2_;
-        }
-
-        public void ResetTurns()
-        {
-            this.Turns = 1;
         }
 
         public Player P1
@@ -32,6 +29,14 @@ namespace PII_Batalla_Naval
             get
             {
                 return p2;
+            }
+        }
+
+        public string Winner
+        {
+            get
+            {
+                return winner;
             }
         }
     }
