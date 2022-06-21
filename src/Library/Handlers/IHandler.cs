@@ -1,5 +1,4 @@
-
-
+/*
 namespace PII_Batalla_Naval
 {
     /// <summary>
@@ -37,3 +36,4 @@ namespace PII_Batalla_Naval
         void Cancel();
     }
 }
+*/

@@ -62,7 +62,7 @@ namespace PII_Batalla_Naval
 
         public bool InLimits(int x, int y)
         {
-            if (x <= this.lenght && y <= this.lenght)
+            if (x <= this.lenght && y <= this.lenght && x >= 0 && y >= 0)
             {
                 return true;
             }
@@ -125,66 +125,66 @@ namespace PII_Batalla_Naval
 
             if (count < board.OnBoardBoats)
             {
-                if (board.InLimits(x,y) && board.NotOcuppied(x,y))
+                if (board.InLimits(x,y))
                 {
-                    if (ori == Orientation.Vertical)
+                    if (board.NotOcuppied(x,y))
                     {
-                        for(int i = 0; i < boat.BoatLength; i++)
+                        if (ori == Orientation.Vertical)
                         {
-                            if (board.InLimits(x, y + i) && board.NotOcuppied(x, y + i))
+                            for(int i = 0; i < boat.BoatLength; i++)
                             {
-                                this.flag = true;
+                                if (board.InLimits(x, y + i) && board.NotOcuppied(x, y + i))
+                                {
+                                    this.flag = true;
+                                }
+                            }
+                            if (this.flag) 
+                            {
+                                for (int j = 0; j < boat.BoatLength; j++)
+                                {
+                                    board.GetBoard()[x, y + j] = boat.ID;
+                                }
+                                this.count++;
+                                this.boatsReady++;
+                            }
+                            else 
+                            {
+                                Console.WriteLine("El barco no puede ser posicionado en este lugar, intente nuevamete");
                             }
                         }
-                        if (this.flag) 
+                        if (ori == Orientation.Horizontal)
                         {
-                            for (int j = 0; j < boat.BoatLength; j++)
+                            for(int i = 0; i < boat.BoatLength; i++)
                             {
-                                board.GetBoard()[x, y + j] = boat.ID;
+                                if (board.InLimits(x + i, y) && board.NotOcuppied(x + i, y))
+                                {
+                                    this.flag = true;
+                                }
                             }
-                            this.count++;
-                            this.boatsReady++;
-                        }
-                        else 
-                        {
-                            Console.WriteLine("El barco no puede ser posicionado en este lugar, intente nuevamete");
+                            if (this.flag) 
+                            {
+                                for (int j = 0; j < boat.BoatLength; j++)
+                                {
+                                    board.GetBoard()[x + j, y] = boat.ID;
+                                }
+                                this.count++;
+                                this.boatsReady++;
+                            }
+                            else 
+                            {
+                                Console.WriteLine("El barco no puede ser posicionado en este lugar, intente nuevamete");
+                            }
+
                         }
                     }
-                    if (ori == Orientation.Horizontal)
+                    else
                     {
-                        for(int i = 0; i < boat.BoatLength; i++)
-                        {
-                            if (board.InLimits(x + i, y) && board.NotOcuppied(x + i, y))
-                            {
-                                this.flag = true;
-                            }
-                        }
-                        if (this.flag) 
-                        {
-                            for (int j = 0; j < boat.BoatLength; j++)
-                            {
-                                board.GetBoard()[x + j, y] = boat.ID;
-                            }
-                            this.count++;
-                            this.boatsReady++;
-                        }
-                        else 
-                        {
-                            Console.WriteLine("El barco no puede ser posicionado en este lugar, intente nuevamete");
-                        }
-
+                      Console.WriteLine($"Posicion ya ocupada, no se puede agregar {boat.Name}, intente nuevamete");  
                     }
                 }
                 else
                 {
-                    if (!board.InLimits(x,y))
-                    {
-                        Console.WriteLine("Posicion fuera de los limites del tablero, intente nuevamete");
-                    }
-                    if (!board.NotOcuppied(x, y))
-                    {
-                         Console.WriteLine($"Posicion ya ocupada, no se puede agregar {boat.Name}, intente nuevamete");
-                    }
+                    Console.WriteLine("Posicion fuera de los limites del tablero, intente nuevamete");
                 }
             } 
         }
