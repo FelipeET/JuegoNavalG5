@@ -1,58 +1,123 @@
-MatchBrowser:
--Toma datos de jugador y permite elegir una Dificultad (Facil, Medio, Dificil) y un tipo de oponente (Player o IA).
+Proyecto PII primer semestre 2022 / Grupo 5
+Batalla Naval
+SRC (Contenido creado por Felipe Etchevers y Joaquín Gasco):
+Boats:
+    IBoat: es una interface que define los atributos que todo barco debe tener:
+            -Nombre: nos permite identificar al barco con un nombre en particular.
+            -Id: nos permite saber qué lugar ocupa el barco en el tablero
+            -Longitud del barco: se refiere a la cantidad de espacios en el tablero que puede ocupar el barco.
+    Vessel: Implementa IBoat (nombre: Buque, id: 1 y longitud del barco: 1). 
+    Submarine: Implementa IBoat (nombre: Submarino, id: 2 y longitud del barco: 2).
+    Destructor: Implementa IBoat (nombre: Destructor, id: 3 y longitud del barco: 3).
+    Carrier: Implementa IBoat (nombre: Porta Aviones, id: 4  y longitud del barco: 4).
 
-MatchSetup:
--Une dos jugadores, les asigna un tablero a cada uno.
-+SetBarcos(tablero1, tablero2)
--Le permite a los jugadores posicionar sus barcos en sus respectivos tableros mediante el uso de la clase BoardSetup.
+Enums:
+    Orientation: Contiene los enumerados Horizontal y Vertical, cuya función es ayudar no solo ayudar al usuario a elegir como colocar su barco, sino que los métodos lógicos del juego también los requieren para su correcto funcionamiento. 
+    Status: Contiene los enumerados OnTurn y Waiting, cuya finalidad es ayudar a los métodos lógicos del juego a funcionar correctamente.
 
-BoardSetup:
--Mediante una Orientacion (Horizontal, Vertical) y una posicion inicial (Coordenadas) permite posicionar los barcos en el tablero de cada jugador.
+Handlers: 
+    BotInConsole: Nos permite una primera interacción con el usuario, pidiéndole que ingrese un comando en base a lo que este desea hacer. En caso de querer jugar se le pide ingresar “/jugar”, en caso de querer salir del juego se le pide ingresar “/salir”. Si se ingresa un comando inválido o vacio se le pedirá al usuario intentar nuevamente. Cabe destacar que la idea para esta clase es utilizar una cadena de Handlers (objetivo primordial para la última entrega).
+    Obs1: Si el usuario ingresa “/jugar”, se pedirá el nombre de los dos jugadores, se iniciara el posicionamiento de barcos de estos dos y acto seguido la batalla dará comienzo.
+	Obs2: Si el usuario ingresa “/salir”, el juego terminará.
+    Obs3: Las clases BaseHandler, HandlerSetGame, StartGameHandler, UnknownCommandHandler y la interfaz IHandler permanecerán comentadas hasta que se comience con la implementación de los Handlers. 
 
-MatchInitializer:
--Toma 2 jugadores de una cola de espera e inicializa la partida.
+Player: Esta clase se utiliza para representar a los jugadores que participan en la batalla. Los atributos que estos poseen son:
+        -Name: indica el nombre del jugador, el cual usaremos para identificarlo.
+        -Vp: indica los puntos de victoria que posee el jugador (cuando el jugador gana una partida este suman puntos de victoria).
+        -PlayerBorad: cada jugador tiene su propio tablero personal, el cual se usa al momento de jugar una partida. Cabe destacar que este tablero se reinicia una vez finalizada una partida, para que así pueda ser reutilizado en futuras batallas. 
+        -PlayerStatus: nos permite asignarle un estado de juego al jugador, de modo que los métodos lógicos del juego saben cómo interactuar con el mismo a lo largo de una partida.
+        Metodos:
+        -StatusOnTurn: este método nos habilita a asignar el enumerado Status.OnTurn al atributo PlayerStatus.
+        -StatusWaiting: este método nos habilita a asignar el enumerado Status.Waiting al atributo PlayerStatus.
+        -AddVp: este método nos permite aumentar los Vp de cada jugador.
 
-Barco:
--Mediante herencia crea distintos tipos de barcos, con un nombre, longitud y simbolo identificador distinto para cada uno.(Submarino, Portaaviones, Crucero, Destructor)
+Print:
+	IPrint: interfaz que establece el método PrintInScreen.
+	PrintBoard: clase que implementa IPrint y tiene los siguientes atributos:
+        -B: se refiere al tablero (matriz de enteros) que debe imprimir en pantalla.
+		-Width y Height: largo y ancho del tablero a imprimri en pantalla.
+        -numbers: es un diccionario de strings que nos ayudara con la estética del tablero.
+    PrintInScreen: método que nos permitirá imprimri en pantalla nuestro tablero a lo largo de una partida. Para esto examina cada entrada del tablero B (matriz de enteros) y en base al número de las mismas agregará un símbolo correspondiente al StringBuilder “s”. 
+        Si el número es:
+            - 0 o 6 agrega “|O|” (en esa casilla del tablero hay “Agua”)
+            -1 agrega “|1|” (en esa casilla del tablero se encuentra ubicado un Buque).
+            -2 agrega “|2|” (en esa casilla del tablero se encuentra ubicado una parte del Submarino).
+            -3 agrega “|3|” (en esa casilla del tablero se encuentra ubicado una parte del Destructor).
+            -4 agrega “|4|” (en esa casilla del tablero se encuentra ubicado una parte del Porta Aviones).
+            -5 agrega “|X|” (en esa casilla del tablero el enemigo a golpeado exitosamente una parte de tus barco). 
 
-Tablero:
--Mediante herencia crea tableros dependiendo de la dificultad de la partida que haya elegido el jugador.
+    PrintRivalBoard: clase que implementa IPrint y tiene los mismos atributos que PrintBoard, solo que B ahora hace referencia al tablero del enemigo de un jugador.
+        -PrintInScreen: método que nos permitirá imprimri en pantalla el tablero del rival a medida que este se actualiza a lo largo de una partida. Para esto examina cada entrada del tablero B (matriz de enteros) y en base al número de las mismas agregará un símbolo correspondiente al StringBuilder “s”.
+        Si el número es:
+            - entre 0 y 4 agrega “| |” (esa casilla del tablero permanece oculta/aun no se realizo un ataque a la misma)
+            -6 agrega “|O|” (en esa casilla del tablero hay “Agua”).
+            -5 agrega “|X|” (en esa casilla del tablero se a golpeado exitosamente una de las partes de un barco enemigo). 
+    -PrintHidden: método que imprime el tablero del rival con todas las casillas ocultas (se usa únicamente en el primer turno de ambos jugadores pues en teoría estos aún no realizaron ningún ataque contra su rival).
 
-CheckCoordenada:
--Verifica que las coordenadas donde se quiera posicionar el barco en relacion a su orientacion sea valida.
+Board: clase que corresponde al tablero que cada jugador tendrá asignado para jugar. 
+    Sus atributos son:
+        -onBoardBoats: corresponde a la cantidad máxima de barcos que se pueden posicionar en el tablero (4 en este caso).
+        -lenght: corresponde al largo y ancho del tablero (6 en nuestro caso).
+        -board: es una matriz de enteros la cual será la base lógica de nuestro tablero, pues los métodos lógicos del juego interactúan con dicha matriz y en base a esta las clases “Print” imprimen en pantalla un tablero correspondiente.
+        -hittCounter: corresponde a la cantidad de golpes a barcos que puede recibir un tablero (10 máximo). Al finalizar cada partida este contador debe volver a 0.
+        -flag: es un booleano que indicara true si y solo si todas las posiciones que ocuparía un barco en proceso de ser colocado son validas. Dando así paso al programa para agaragar las partes el barco a dichas posiciones. 
+        -count: nos permitirá seguir agregando barcos siempre y cuando no alcancemos la cantidad máxima de barcos permitidos en el tablero (4).
+        -boatsReady: nos permite controlar que barco falta agregar al tablero (esto funciona pues en nuestro juego se agregan  los barcos siempre en el mismo orden).
+    Sus métodos son:
+        -BuildBoard: recibe dos enteros que corresponden a una coordenada. Coloca en todas las entradas de board un 0, dejándolo así preparado para iniciar cualquier partida.
+        -InLimits: recibe dos enteros que corresponden a una coordenada.  Se asegura que las coordenadas ingresadas por un jugador están dentro de los límites del tablero.
+        -NotOcuppied: se asegura que la casilla del tablero referenciada por las coordenadas ingresadas por un jugador no está ocupada.  Si la casilla contiene un 0 está libre, de otra forma está ocupada.
+        -Shoot: recibe un tablero y dos enteros que corresponden a una coordenada. Si estas coordenadas están dentro de los límites del tablero (en caso contrario imprime "Posición invalida, intente nuevamente"), y la casilla que referencian no contiene un 5 o un 6 (en dicho caso ya se habría disparado antes a dicha posición e imprimiría "Ya disparaste anteriormente a esta posición, intenta con otra") entonces:  si el numero de la casilla es 0 lo cambia a 6 e imprime “Agua!”, pero si el número de la casilla es entre 1 y 4 lo cambia a 5 e imprime “Tocado!”. 
+        -AddBoat: recibe un tablero, dos enteros que corresponden a una coordenada, una orientación y un barco. Primero asigna el valor false a flag, después, si count es menor a la cantidad de barcos permitidos en un tablero: pregunta si las coordenadas están en los límites del tablero y la casilla a la que hace referencia dicha coordenada no está ocupada (en caso de que una de estas condiciones falle se indicara mediante un mensaje). En base a la orientación elegida comienza a validar todas las casillas que ocuparía dicho barco (los barcos se colocan de izquierda a derecha según su coordenada inicial y si la posición es horizontal, o de arriba hacia abajo según su coordenada inicial y si la orientación es vertical) y si todas son validas entonces flag pasa a ser true. Una vez hecho esto se procede a agregar a dichas casillas el identificador del barco que se está intentando agregar al tablero.
+        -ResetBoard: nos permite reiniciar los valores de ciertos atributos de Board (hittCounter, count, boatsReady) además de volver a colocar todas las casillas de tablero en 0 (BuildBoard). Esto deja el tablero listo para una siguiente partida.
+        -GetBoard: devuelve cualquier entrada del tablero.
+        
+Game: clase que reúne a dos jugadores que desean participar del juego y los coloca en un nuevo juego.
+    Sus atributos son: 
+	    -p1: referencia al jugador 1.
+	    -p2: referencia al jugador 2.
+	    -Turns: indica el turno en el cual se encuentra la partida.
+	    -winner: indica el ganador de dicha partida.
+ 
+Logic: clase que contiene el funcionamiento lógico de la partida (para esto utiliza métodos locales y otros pertenecientes a otras clases).
+    Sus atributos: 
+	    -Match: referencia al Game que esta por llevarse a cabo.
+	    -print1: instancia de PrintBoard encargada de imprimir el tablero del jugador 1.
+	    -print2: instancia de PrintBoard encargada de imprimir el tablero del jugador 2.
+        -printPlayer1: instancia de PrintRivalBoard encargada de imprimir el tablero del jugador 2 según el punto de vista del jugador 1. 
+        -printPlayer2: instancia de PrintRivalBoard encargada de imprimir el tablero del jugador 1 según el punto de vista del jugador 2. 
+        -info: instancia de MatchInfo que nos permitirá guardar los datos de la partida.
+    Sus métodos:
+    -LogGame: consta de los bucles while. El primero permite al jugador 1 colocar todos los barcos que le corresponden en su tablero. El segundo hace lo mismo pero para el jugador 2. Ambos bucles usan al método AppealForBoats.
+    -LetsPlay: consta de un bucle while principal que se ejecuta mientras que el tablero de uno de los jugadores no haya recibido  10 hits a barcos o mas (en este caso todos los barcos en ese tablero estarían hundidos).  Dentro de este bucle se invoca el método StatusOnTurn para el jugador 1 (lo deja habilitado para entrar a su turno), después se inicia un bucle while el cual se mantiene mientras que el jugador 1 este habilitado a jugar (su status debe ser OnTurn) e invoca al método PlayerMove que habilita la interacción de el jugador de turno con su enemigo. El siguiente bucle while hace lo mismo pero tomando al jugador 2 como el jugador de turno.
+     Una vez que se sale del while principal se indica que la partida termino y dependiendo de quién sea el ganador se procede a realizar las acciones correspondientes. Para finalizar se guarda la información final de la partida y se reinicia el tablero de ambos jugadores.
+    -GetOri: dependiendo de lo ingresado por el usuario en consola retorna una Orientation.
+    -AppealForBoats: Recibe un jugador como parámetro. En base a el valor de BoatsReady del tablero de dicho jugador s entra en un bloque switch. En caso de que sea:
+        -0 se agrega un Porta Aviones.
+        -1 se agrega un Destructor.
+        -2 se agrega un Submarino.
+        -3 se agrega un Buque.
+        Obs1: en cada bloque caso se crea el barco que se pretende agregar al tablero y se le pide al jugador ingresar una coordenada y una orientación para dicho barco.
+        Obs2: se utiliza un bloque try – catch para lidiar con posibles errores del usuario al intentar cumplir lo especificado en Obs1.
+        El bloque default imprime "Todos los barcos listos".
+    -PlayerMove: recibe dos Player como parámetros (el jugador de turno y el enemigo respectivamente). Mientras que no se está al menos en el turno 3 de la partida usa PrintHidden para imprimri el tablero del rival (pues en teoría todavía ambos jugadores no han realizado movimientos contra su rival), una vez superado el turno 2 ya se utiliza enemy.PrintInScreen para imprimri el tablero rival. Se le pide al jugador de turno ingresar una coordenada para disparar (se implementa un bloque try – catch para lidiar con posibles errores en esta interacción). Después se utiliza el método Shoot para disparar al tablero del rival. Por último se pasa el status del jugador de turno a Waiting, el status del enemigo a OnTurn y se suma 1 a los turnos del match.
 
-Player:
--Guarda nombre y puntos del jugador.
+MatchInfo: clase que nos permitirá guardar los datos de cada partida que se juegue.
+    Sus atributos: 
+        -GameInfo: lista de caracteres que guarda numero de partida, los jugadores que participaron, fecha del encuentro y el ganador de la partida.
+        -GameBoardsInfo: lista de Boards que guarda los tableros finales de cada jugador en una partida.
+        -printInfo: instancia de Print Board para imprimir lo guardado en GameBoardsInfo.
+        -CantGames: entero que controla la cantidad de partidas jugadas.
+    Sus métodos: 
+	    -AddInfo: agrega a GameInfo y  GameBoardsInfo la información que les corresponde.
+	    -ShowGameInfo: Imprime los datos de cada partida jugada hasta el momento.
+	    -GamesPlayed: suma 1 al valor de CantGames cada vez que termina una partida.
 
-Ranking:
--Agrega jugadores a una lista ordenada en base a los puntos (Mayor a menor).
-
-Powers
--Crea y guarda nombre de una habilidad que podremos utilizar a lo largo de la partida.
-
-Logica:
--Se encarga del funcionamiento logico de la partida.
-GetTurnos: Devuelve el turno en el cual se encuentra la partida.
-Strike: Corrobora si es posible disparar a cierta coordenada.
-WasStriked: Corrobora si se disparo en una determinada coordenada.
-Visto: Corrobora si una coordenada ya fue descubierta.
-Mostar: Cambia el icono de la casilla dependiendo del estado de la misma. 
-UsePower: En base al poder que se usa aplica el efecto sobre el tablero rival.
-AddPoints: Una vez finalizada la partida le agrega al jugador vencedor una cierta canitdad de puntos.
-WinnerIs: Determina el ganador y termina la partida.
-ChangeBoard: Cambia el estado de las casillas del tablero dependiendo de las acciones realizadas sobre las mismas.
-
-ImpTablero:
--imprime un tablero al iniciar la partida y a medida que este se actualiza.
-
-IA:
-BuildBoard: arma un tablero para la IA en base a la dificuktad elegida por el jugador.
-PlaceRandomBoats: coloca botes en posiciones validas pero aleatorias en el tablero de la IA.
-
+Tests (creados por Felipe Etchevers y Joaquin Gasco): 
 
 
 Extras agregadas por el equipo:
 Poderes (Powers).
-Ranking (Ranking de jugadores).
+Ranking (Ranking de jugadores) -> se intenta al agregar el atribto Vp a player. 
 IA(Bot rival). 
 3 Dificultades del tablero.
