@@ -7,15 +7,15 @@ namespace PII_Batalla_Naval
     public class Logic
     {
         private Game Match; 
-        private List<string> PandTInfo = new List<string>();
-        private List<Board> boardsInfo = new List<Board>();
+        //private List<string> PandTInfo = new List<string>();
+        //private List<Board> boardsInfo = new List<Board>();
         private string winner;
         PrintBoard print1; 
         PrintBoard print2; 
         //PrintHidden hidden; 
         PrintRivalBoard printPlayer1;
         PrintRivalBoard printPlayer2;
-        PrintBoard printinfo;
+        //PrintBoard printinfo;
         private string message;
 
         public Logic (Game game)
@@ -30,14 +30,16 @@ namespace PII_Batalla_Naval
 
         public void LogGame()
         {
-            Console.WriteLine("Es el turno del jugador 1 para colocar sus barcos"); 
+            Console.WriteLine("IMPORTANTE: los barcos se colocan de izquierda a derecha (si la orientacion elegida es horizontal) y de arriba hacia abajo (si la orientacion elegida es vertical), ten esto en cuenta al momento de ingresar las coordenadas y orientacion de tus barcos \n");
+            Console.WriteLine($"Es el turno de {Match.P1.Name} para colocar sus barcos"); 
             while (Match.P1.PlayerBoard.BoatsReady <= 3)
             {
                 AppealForBoats(Match.P1);
             }
             Console.Clear();
 
-            Console.WriteLine("Es el turno del jugador 2 para colocar sus barcos");
+            Console.WriteLine("IMPORTANTE: los barcos se colocan de izquierda a derecha (si la orientacion elegida es horizontal) y de arriba hacia abajo (si la orientacion elegida es vertical), ten esto en cuenta al momento de ingresar las coordenadas y orientacion de tus barcos \n");
+            Console.WriteLine($"Es el turno de {Match.P2.Name} para colocar sus barcos");
             while (Match.P2.PlayerBoard.BoatsReady <= 3)
             {
                 AppealForBoats(Match.P2); 
@@ -47,21 +49,6 @@ namespace PII_Batalla_Naval
 
         public void LetsPlay()
         {
-            /*while (Match.P1.PlayerBoard.HitCounter <= 10 || Match.P2.PlayerBoard.HitCounter <= 10)
-            {
-                Match.P1.StatusOnTurn();
-
-                while (Match.P1.PlayerStatus == Status.OnTurn)
-                {
-                    PlayerMove(Match.P1, Match.P2);
-                }
-
-                while (Match.P2.PlayerStatus == Status.OnTurn)
-                {
-                    PlayerMove(Match.P2, Match.P1);
-                }
-            }*/
-
             while (Match.P1.PlayerBoard.HitCounter < 10 && Match.P2.PlayerBoard.HitCounter < 10)
             {
                 Match.P1.StatusOnTurn();
@@ -96,9 +83,9 @@ namespace PII_Batalla_Naval
                 Console.WriteLine($"Los Putos de Victoria de {Match.P1.Name} son: {Match.P1.VP}");
             }
 
-            PandTInfo.Add($"Batalla entre {Match.P1.Name} y {Match.P2.Name} / Fecha del encuentro: {DateTime.Now.ToString("dd'/'MM'/'yyyy")} / Duracion: {Match.Turns} turnos/ El ganador fue: {this.winner}"); 
-            boardsInfo.Add(Match.P1.PlayerBoard);
-            boardsInfo.Add(Match.P2.PlayerBoard);
+            //PandTInfo.Add($"Batalla entre {Match.P1.Name} y {Match.P2.Name} / Fecha del encuentro: {DateTime.Now.ToString("dd'/'MM'/'yyyy")} / Duracion: {Match.Turns} turnos/ El ganador fue: {this.winner}"); 
+            //boardsInfo.Add(Match.P1.PlayerBoard);
+            //boardsInfo.Add(Match.P2.PlayerBoard);
 
             Match.P1.PlayerBoard.ResetBoard();
             Match.P2.PlayerBoard.ResetBoard();
@@ -121,7 +108,7 @@ namespace PII_Batalla_Naval
         }
 
         public string UserMessage(string message){
-            message=Console.ReadLine();
+            message = Console.ReadLine();
             return message;
         }
 
@@ -135,7 +122,7 @@ namespace PII_Batalla_Naval
                 case 0:
                     Carrier carrier = new Carrier();
                     printAppeal.PrintInScreen();
-                    Console.WriteLine("Ingrese una coordenada y una orientacion (X, Y, horizontal/vertical separadas por un espacio entre ellas) para su porta aviones");
+                    Console.WriteLine("Ingrese una coordenada y una orientacion (X, Y, horizontal/vertical separadas por un espacio entre ellas) para su Porta Aviones (ocupa 4 espacios en el tablero)");
                     string message= UserMessage(this.message);
                     coords = message.Split(" ");
 
@@ -173,7 +160,7 @@ namespace PII_Batalla_Naval
                 case 1:
                     Destructor destructor = new Destructor();
                     printAppeal.PrintInScreen();
-                    Console.WriteLine("Ingrese una coordenada y una orientacion (X, Y, horizontal/vertical separadas por un espacio entre ellas) para su destructor");
+                    Console.WriteLine("Ingrese una coordenada y una orientacion (X, Y, horizontal/vertical separadas por un espacio entre ellas) para su Destructor (ocupa 3 espacios en el tablero)");
                     message = Console.ReadLine();
                     coords = message.Split(" ");
                     player.PlayerBoard.AddBoat(player.PlayerBoard, Int32.Parse(coords[0]), Int32.Parse(coords[1]), GetOri(coords[2]), destructor);
@@ -183,7 +170,7 @@ namespace PII_Batalla_Naval
                  case 2:
                     Submarine submarine= new Submarine();
                     printAppeal.PrintInScreen();
-                    Console.WriteLine("Ingrese una coordenada y una orientacion (X, Y, horizontal/vertical separadas por un espacio entre ellas) para su submarino");
+                    Console.WriteLine("Ingrese una coordenada y una orientacion (X, Y, horizontal/vertical separadas por un espacio entre ellas) para su Submarino (ocupa 2 espacios en el tablero)");
                     message = Console.ReadLine();
                     coords = message.Split(" ");
                     player.PlayerBoard.AddBoat(player.PlayerBoard, Int32.Parse(coords[0]), Int32.Parse(coords[1]), GetOri(coords[2]), submarine);
@@ -193,7 +180,7 @@ namespace PII_Batalla_Naval
                 case 3:
                     Vessel vessel = new Vessel();
                     printAppeal.PrintInScreen();
-                    Console.WriteLine("Ingrese una coordenada y una orientacion (X, Y, horizontal/vertical separadas por un espacio entre ellas) para su buque");
+                    Console.WriteLine("Ingrese una coordenada y una orientacion (X, Y, horizontal/vertical separadas por un espacio entre ellas) para su Buque (ocupa 1 espacios en el tablero)");
                     message = Console.ReadLine();
                     coords = message.Split(" ");
                    player.PlayerBoard.AddBoat(player.PlayerBoard, Int32.Parse(coords[0]), Int32.Parse(coords[1]), GetOri(coords[0]), vessel);
@@ -251,6 +238,7 @@ namespace PII_Batalla_Naval
             Match.Turns++;
         }
 
+        /*
         public void ShowMatchInfo()
         {
             Console.WriteLine("-----------------------");
@@ -265,7 +253,7 @@ namespace PII_Batalla_Naval
               printinfo.PrintInScreen();  
             }
             Console.WriteLine("-----------------------");
-        }
+        }*/
     }
 }  
 
