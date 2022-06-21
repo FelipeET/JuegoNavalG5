@@ -42,10 +42,10 @@ namespace Library.Test
             Assert.AreEqual(true, Checker);
         }             
         [Test]
-        public void OnBoardBoatTest()
+        public void AddBoatTest()
         {
-            const int expected = 4;
-            Assert.AreEqual(expected, board.OnBoardBoats);
+            Vessel vesselT = new Vessel();
+            this.board.AddBoat(board, 1 , 1 , Vertical , vesselT );
         }
     }
 }
