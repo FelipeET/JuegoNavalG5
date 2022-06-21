@@ -13,6 +13,8 @@ namespace PII_Batalla_Naval
             log1.LogGame();
             Console.Clear();
             log1.LetsPlay();
+            Console.WriteLine(p1.PlayerBoard);
+
             
         }
     }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Felipe\\OneDrive\\Desktop\\UCU\\Programacion 2\\Proyecto0\\src\\Test\\Library.Test\\Library.Test.csproj": {}
+    "C:\\Users\\Felipe\\OneDrive\\Desktop\\NAVAL\\JuegoNaval\\JuegoNavalG5\\src\\Test\\Library.Test\\Library.Test.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Felipe\\OneDrive\\Desktop\\UCU\\Programacion 2\\Proyecto0\\src\\Test\\Library.Test\\Library.Test.csproj": {
+    "C:\\Users\\Felipe\\OneDrive\\Desktop\\NAVAL\\JuegoNaval\\JuegoNavalG5\\src\\Test\\Library.Test\\Library.Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Felipe\\OneDrive\\Desktop\\UCU\\Programacion 2\\Proyecto0\\src\\Test\\Library.Test\\Library.Test.csproj",
+        "projectUniqueName": "C:\\Users\\Felipe\\OneDrive\\Desktop\\NAVAL\\JuegoNaval\\JuegoNavalG5\\src\\Test\\Library.Test\\Library.Test.csproj",
         "projectName": "Library.Test",
-        "projectPath": "C:\\Users\\Felipe\\OneDrive\\Desktop\\UCU\\Programacion 2\\Proyecto0\\src\\Test\\Library.Test\\Library.Test.csproj",
+        "projectPath": "C:\\Users\\Felipe\\OneDrive\\Desktop\\NAVAL\\JuegoNaval\\JuegoNavalG5\\src\\Test\\Library.Test\\Library.Test.csproj",
         "packagesPath": "C:\\Users\\Felipe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Felipe\\OneDrive\\Desktop\\UCU\\Programacion 2\\Proyecto0\\src\\Test\\Library.Test\\obj\\",
+        "outputPath": "C:\\Users\\Felipe\\OneDrive\\Desktop\\NAVAL\\JuegoNaval\\JuegoNavalG5\\src\\Test\\Library.Test\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Felipe\\AppData\\Roaming\\NuGet\\NuGet.Config"

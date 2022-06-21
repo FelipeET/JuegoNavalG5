@@ -3,7 +3,7 @@ public class Submarine : IBoat
 {
     private int id = 2;
     private int boatLenght = 2;
-    private string name = "Subamrino";
+    private string name = "Submarino";
 
     public int ID{
         get{
