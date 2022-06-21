@@ -16,6 +16,7 @@ namespace PII_Batalla_Naval
         PrintRivalBoard printPlayer1;
         PrintRivalBoard printPlayer2;
         PrintBoard printinfo;
+        private string message;
 
         public Logic (Game game)
         {
@@ -29,7 +30,7 @@ namespace PII_Batalla_Naval
 
         public void LogGame()
         {
-            Console.WriteLine("Es el turno del jugador 1 para colocar sus barcos");
+            Console.WriteLine("Es el turno del jugador 1 para colocar sus barcos"); 
             while (Match.P1.PlayerBoard.BoatsReady <= 3)
             {
                 AppealForBoats(Match.P1);
@@ -83,8 +84,8 @@ namespace PII_Batalla_Naval
                 Match.P2.AddVp(10);
                 this.winner = Match.P2.Name;
                 Console.WriteLine($"{Match.P2.Name} es el ganador!");
-                Console.WriteLine($"Los Putos de Victoria de {Match.P2.Name} aumentaron en +10");
-                Console.WriteLine($"Los Putos de Victoria de {Match.P2.Name} son: {Match.P2.VP}");
+                Console.WriteLine($"Los Puntos de Victoria de {Match.P2.Name} aumentaron en +10");
+                Console.WriteLine($"Los Puntos de Victoria de {Match.P2.Name} son: {Match.P2.VP}");
             }
             else
             {
@@ -119,9 +120,13 @@ namespace PII_Batalla_Naval
             }
         }
 
+        public string UserMessage(string message){
+            message=Console.ReadLine();
+            return message;
+        }
+
         public void AppealForBoats(Player player)
         {
-            string message;
             String[] coords;
             PrintBoard printAppeal = new PrintBoard(player.PlayerBoard, player.PlayerBoard.Length, player.PlayerBoard.Length);
 
@@ -131,12 +136,12 @@ namespace PII_Batalla_Naval
                     Carrier carrier = new Carrier();
                     printAppeal.PrintInScreen();
                     Console.WriteLine("Ingrese una coordenada y una orientacion (X, Y, horizontal/vertical separadas por un espacio entre ellas) para su porta aviones");
-                    message = Console.ReadLine();
+                    string message= UserMessage(this.message);
                     coords = message.Split(" ");
 
                     if (!coords[2].Equals("horizontal") && !coords[2].Equals("vertical"))
                     {
-                        throw new Exception("orientacion invalida");
+                        throw new OrientationCheckerException("Orientation Error: Invalid Orientation.");
                     }
 
                     try

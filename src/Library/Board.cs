@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace PII_Batalla_Naval
 {
@@ -16,21 +17,47 @@ namespace PII_Batalla_Naval
         public int SubmarieOnBoard = 0;
         public int DestructorOnBoard = 0;
         public int CarrierOnBoard = 0;
+        public int x;
+        public int y;
+        public int EachChecker=36;
         
         public Board ()
         {
             int[,] board = new int [lenght,lenght];
             this.board = board;
         }
-      public void BuildBoard()
+
+        public void BuildBoard()
         {  
-            for (int y=0; y < lenght; y++)
+            for (y=0; y < lenght; y++)
             {
-                for (int x=0; x < lenght; x++)
+                for (x=0; x < lenght; x++)
                 {
                     this.board[x,y] = 0; 
                 }
-            }   
+            }  
+            BoardChecker(); 
+        }
+
+        public void BoardChecker()
+        {    
+            for (y=0; y < 6; y++)
+            {
+                for (x=0; x < 6; x++)
+                {
+                    while (EachChecker>=0)
+                    {
+                        if (this.board[x,y]!=0)
+                        {
+                            throw new BuildBoardCheckerException("Build Board error: Not all positions were Water while building the board.");
+                        }
+                        else
+                        {
+                            EachChecker--;
+                        }
+                    }
+                }
+            }
         }
 
         public bool InLimits(int x, int y)
