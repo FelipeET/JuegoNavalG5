@@ -66,9 +66,12 @@ namespace PII_Batalla_Naval
             {
                 return true;
             }
-            else
+            if (x > this.lenght && y > this.lenght)
             {
                 return false;
+            }
+            else{
+                return true;
             }
         }
 

@@ -120,7 +120,7 @@ namespace PII_Batalla_Naval
 
                     if (!coords[2].Equals("horizontal") && !coords[2].Equals("vertical"))
                     {
-                        throw new OrientationCheckerException("Orientation Error: Invalid Orientation.");
+                        throw new OrientationCheckerException("Error de orientacion: Orientacion invalida.");
                     }
 
                     bool test = false;
@@ -129,7 +129,7 @@ namespace PII_Batalla_Naval
                     {   
                         //Console.WriteLine("PRUEBA 1");
                         int x = Int32.Parse(coords[0]);
-                        int y = Int32.Parse(coords[1]);
+                        int y = Int32.Parse(coords[1]);  
                         //Console.WriteLine("PRUEBA 2");
                         if (x < 0 || x > 5 || y < 0 || y > 5)
                         {
@@ -166,7 +166,7 @@ namespace PII_Batalla_Naval
                     }
 
                     player.PlayerBoard.AddBoat(player.PlayerBoard, Int32.Parse(coords[0]), Int32.Parse(coords[1]), GetOri(coords[2]), carrier);
-                    Console.WriteLine("El barco se coloco correctaente:");
+                    Console.WriteLine("El barco se coloco correctamente:");
                     break;
 
                 case 1:
@@ -176,7 +176,7 @@ namespace PII_Batalla_Naval
                     message = Console.ReadLine();
                     coords = message.Split(" ");
                     player.PlayerBoard.AddBoat(player.PlayerBoard, Int32.Parse(coords[0]), Int32.Parse(coords[1]), GetOri(coords[2]), destructor);
-                    Console.WriteLine("El barco se coloco correctaente:");
+                    Console.WriteLine("El barco se coloco correctamente:");
                     break;
 
                  case 2:
@@ -186,7 +186,7 @@ namespace PII_Batalla_Naval
                     message = Console.ReadLine();
                     coords = message.Split(" ");
                     player.PlayerBoard.AddBoat(player.PlayerBoard, Int32.Parse(coords[0]), Int32.Parse(coords[1]), GetOri(coords[2]), submarine);
-                    Console.WriteLine("El barco se coloco correctaente:");
+                    Console.WriteLine("El barco se coloco correctamente:");
                     break;   
 
                 case 3:
@@ -196,11 +196,11 @@ namespace PII_Batalla_Naval
                     message = Console.ReadLine();
                     coords = message.Split(" ");
                    player.PlayerBoard.AddBoat(player.PlayerBoard, Int32.Parse(coords[0]), Int32.Parse(coords[1]), GetOri(coords[0]), vessel);
-                    Console.WriteLine("El barco se coloco correctaente:");
+                    Console.WriteLine("El barco se coloco correctamente:");
                     break;
 
                 default:
-                    Console.WriteLine("Todos los barcos listos");
+                    Console.WriteLine("Todos los barcos listos.");
                     break;      
 
             }
@@ -226,7 +226,7 @@ namespace PII_Batalla_Naval
                 Console.WriteLine($"Tablero de {enemigo.Name}:");
                 printEnemy.PrintInScreen();
             }
-            Console.WriteLine("ingrese una coordenada (X e Y separadas por un epacio entre si) a la cual deseas disparar");
+            Console.WriteLine("Ingrese una coordenada (X e Y separadas por un epacio entre si) a la cual deseas disparar");
             message = Console.ReadLine();
             coords = message.Split(" ");
 
@@ -236,12 +236,12 @@ namespace PII_Batalla_Naval
                 int y = Int32.Parse(coords[1]);
                 if (x < 0 || x > 5 || y < 0 || y > 5)
                 {
-                    throw new Exception("recuerda que las coordenadas deben ser numeros entre 0 y 5");
+                    throw new IndexCheckerException("Las coordenadas deben ser un int entre 0 y 5.");
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine("coordenadas invalidas: ", e);
+                Console.WriteLine("Coordenadas invalidas: ", e);
             }
 
             enemigo.PlayerBoard.Shoot(enemigo.PlayerBoard, Int32.Parse(coords[0]), Int32.Parse(coords[1]));
