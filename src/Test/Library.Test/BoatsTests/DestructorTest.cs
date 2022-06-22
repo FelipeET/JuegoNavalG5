@@ -11,7 +11,9 @@ namespace Library.Test
         {
             this.destructor = new Destructor();
         }
-
+        /// <summary>
+        /// Test de atributos del barco /Tamano, id y nombre
+        /// </summary>
 
         [Test]
         public void DestructorLenghtTest()
