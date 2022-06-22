@@ -1,4 +1,4 @@
-using System;
+//Implementa IBoat (nombre: Destructor, id: 3 y longitud del barco: 3).
 public class Destructor : IBoat
 {
     private int id = 3;

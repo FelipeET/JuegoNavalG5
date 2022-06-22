@@ -1,7 +1,7 @@
 using System;
-using System.IO;
 using System.Text;
-using System.Threading;
+
+//clase que implementa IPrint
 
 namespace PII_Batalla_Naval
 {
@@ -19,7 +19,16 @@ namespace PII_Batalla_Naval
             this.Width = width;
             this.Height = height;
         }
-        
+        /*
+        método que nos permitirá imprimri en pantalla nuestro tablero a lo largo de una partida. Para esto examina cada entrada del tablero B (matriz de enteros) y en base al número de las mismas agregará un símbolo correspondiente al StringBuilder “s”. 
+        Si el número es:
+            - 0 o 6 agrega “|O|” (en esa casilla del tablero hay “Agua”)
+            -1 agrega “|1|” (en esa casilla del tablero se encuentra ubicado un Buque).
+            -2 agrega “|2|” (en esa casilla del tablero se encuentra ubicado una parte del Submarino).
+            -3 agrega “|3|” (en esa casilla del tablero se encuentra ubicado una parte del Destructor).
+            -4 agrega “|4|” (en esa casilla del tablero se encuentra ubicado una parte del Porta Aviones).
+            -5 agrega “|X|” (en esa casilla del tablero el enemigo a golpeado exitosamente una parte de tus barco).
+        */
         public void PrintInScreen()
         {
             StringBuilder s = new StringBuilder();

@@ -1,5 +1,16 @@
 using System;
 
+//BotInConsole: Nos permite una primera interacción con el usuario, pidiéndole que ingrese 
+//un comando en base a lo que este desea hacer. En caso de querer jugar se le pide ingresar “/jugar”, 
+//en caso de querer salir del juego se le pide ingresar “/salir”. 
+//Si se ingresa un comando inválido o vacio se le pedirá al usuario intentar nuevamente. 
+//Cabe destacar que la idea para esta clase es utilizar una cadena de Handlers 
+//(objetivo primordial para la última entrega).
+
+//Obs1: Si el usuario ingresa “/jugar”, se pedirá el nombre de los dos jugadores, 
+//se iniciara el posicionamiento de barcos de estos dos y acto seguido la batalla dará comienzo.
+//Obs2: Si el usuario ingresa “/salir”, el juego terminará.
+
 namespace PII_Batalla_Naval
 {
     public class BotInConsole

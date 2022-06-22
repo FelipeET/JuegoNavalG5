@@ -1,4 +1,4 @@
-using System;
+//Implementa IBoat (nombre: Porta Aviones, id: 4  y longitud del barco: 4).
 public class Carrier : IBoat
 {
     private int id = 4;

@@ -23,7 +23,7 @@ Handlers:
 
 Player: Esta clase se utiliza para representar a los jugadores que participan en la batalla. Los atributos que estos poseen son:
         -Name: indica el nombre del jugador, el cual usaremos para identificarlo.
-        -Vp: indica los puntos de victoria que posee el jugador (cuando el jugador gana una partida este suman puntos de victoria).
+        -vp: indica los puntos de victoria que posee el jugador (cuando el jugador gana una partida este suman puntos de victoria).
         -PlayerBorad: cada jugador tiene su propio tablero personal, el cual se usa al momento de jugar una partida. Cabe destacar que este tablero se reinicia una vez finalizada una partida, para que así pueda ser reutilizado en futuras batallas. 
         -PlayerStatus: nos permite asignarle un estado de juego al jugador, de modo que los métodos lógicos del juego saben cómo interactuar con el mismo a lo largo de una partida.
         Metodos:
@@ -113,11 +113,10 @@ MatchInfo: clase que nos permitirá guardar los datos de cada partida que se jue
 	    -ShowGameInfo: Imprime los datos de cada partida jugada hasta el momento.
 	    -GamesPlayed: suma 1 al valor de CantGames cada vez que termina una partida.
 
-Tests (creados por Felipe Etchevers y Joaquin Gasco): 
-
+Tests (creados por Felipe Etchevers y Joaquin Gasco) 
 
 Extras agregadas por el equipo:
-Poderes (Powers).
-Ranking (Ranking de jugadores) -> se intenta al agregar el atribto Vp a player. 
-IA(Bot rival). 
-3 Dificultades del tablero.
+-Poderes (Powers).
+-Ranking (Ranking de jugadores) -> se intenta al agregar mediante el uso de los Vp en los Players. 
+-IA(Bot rival). 
+-3 Dificultades del tablero.

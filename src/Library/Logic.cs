@@ -1,16 +1,30 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
+
+//clase que contiene el funcionamiento lógico de la partida 
+//(para esto utiliza métodos locales y otros pertenecientes a otras clases).
 
 namespace PII_Batalla_Naval
 {
     public class Logic
     {
+        //referencia al Game que esta por llevarse a cabo.
         private Game Match; 
-        private PrintBoard print1; 
-        private PrintBoard print2; 
+
+        //instancia de PrintBoard encargada de imprimir el tablero del jugador 1.
+        private PrintBoard print1;
+
+        //instancia de PrintBoard encargada de imprimir el tablero del jugador 2. 
+        private PrintBoard print2;
+
+        //instancia de PrintRivalBoard encargada de imprimir el tablero del jugador 2 
+        //según el punto de vista del jugador 1. 
         private PrintRivalBoard printPlayer1;
+
+        //instancia de PrintRivalBoard encargada de imprimir el tablero del jugador 1 
+        //según el punto de vista del jugador 2.
         private PrintRivalBoard printPlayer2;
+
+        //instancia de MatchInfo que nos permitirá guardar los datos de la partida.
         private MatchInfo info;
         private string message;
 
@@ -24,6 +38,9 @@ namespace PII_Batalla_Naval
             this.info = new MatchInfo();
         }
 
+        //consta de los bucles while. El primero permite al jugador 1 colocar todos los barcos que le 
+        //corresponden en su tablero. 
+        //El segundo hace lo mismo pero para el jugador 2. Ambos bucles usan al método AppealForBoats.
         public void LogGame()
         {
             Console.WriteLine("IMPORTANTE: los barcos se colocan de izquierda a derecha (si la orientacion elegida es horizontal) y de arriba hacia abajo (si la orientacion elegida es vertical), ten esto en cuenta al momento de ingresar las coordenadas y orientacion de tus barcos \n");
@@ -43,6 +60,16 @@ namespace PII_Batalla_Naval
             Console.Clear(); 
         }
 
+        //consta de un bucle while principal que se ejecuta mientras que el tablero de uno de los jugadores 
+        //no haya recibido  10 hits a barcos o mas (en este caso todos los barcos en ese tablero estarían hundidos).  
+        //Dentro de este bucle se invoca el método StatusOnTurn para el jugador 1 
+        //(lo deja habilitado para entrar a su turno), después se inicia un bucle while el cual se mantiene 
+        //mientras que el jugador 1 este habilitado a jugar (su status debe ser OnTurn) e 
+        //invoca al método PlayerMove que habilita la interacción de el jugador de turno con su enemigo. 
+        //El siguiente bucle while hace lo mismo pero tomando al jugador 2 como el jugador de turno.
+        //Una vez que se sale del while principal se indica que la partida termino y dependiendo de quién sea 
+        //el ganador se procede a realizar las acciones correspondientes. 
+        //Para finalizar se guarda la información final de la partida y se reinicia el tablero de ambos jugadores.
         public void LetsPlay()
         {
             while (Match.P1.PlayerBoard.HitCounter < 10 && Match.P2.PlayerBoard.HitCounter < 10)
@@ -86,6 +113,7 @@ namespace PII_Batalla_Naval
             Match.P2.PlayerBoard.ResetBoard();    
         }
 
+        //dependiendo de lo ingresado por el usuario en consola retorna una Orientation.
         public Orientation GetOri(string ori)
         {
 
@@ -104,6 +132,16 @@ namespace PII_Batalla_Naval
             return message;
         }
 
+        /*
+        Recibe un jugador como parámetro. En base a el valor de BoatsReady del tablero de dicho jugador s entra en un bloque switch. En caso de que sea:
+        -0 se agrega un Porta Aviones.
+        -1 se agrega un Destructor.
+        -2 se agrega un Submarino.
+        -3 se agrega un Buque.
+        Obs1: en cada bloque caso se crea el barco que se pretende agregar al tablero y se le pide al jugador ingresar una coordenada y una orientación para dicho barco.
+        Obs2: se utiliza un bloque try – catch para lidiar con posibles errores del usuario al intentar cumplir lo especificado en Obs1.
+        El bloque default imprime "Todos los barcos listos".
+        */
         public void AppealForBoats(Player player)
         {
             String[] coords;
@@ -115,7 +153,7 @@ namespace PII_Batalla_Naval
                     Carrier carrier = new Carrier();
                     printAppeal.PrintInScreen();
                     Console.WriteLine("Ingrese una coordenada y una orientacion (X, Y, horizontal/vertical separadas por un espacio entre ellas) para su Porta Aviones (ocupa 4 espacios en el tablero)");
-                    string message= UserMessage(this.message);
+                    string message = UserMessage(this.message);
                     coords = message.Split(" ");
 
                     if (!coords[2].Equals("horizontal") && !coords[2].Equals("vertical"))
@@ -206,6 +244,14 @@ namespace PII_Batalla_Naval
             }
         }
 
+        //recibe dos Player como parámetros (el jugador de turno y el enemigo respectivamente). 
+        //Mientras que no se está al menos en el turno 3 de la partida usa PrintHidden para imprimri el 
+        //tablero del rival (pues en teoría todavía ambos jugadores no han realizado movimientos contra su rival), 
+        //una vez superado el turno 2 ya se utiliza enemy.PrintInScreen para imprimri el tablero rival. 
+        //Se le pide al jugador de turno ingresar una coordenada para disparar 
+        //(se implementa un bloque try – catch para lidiar con posibles errores en esta interacción). 
+        //Después se utiliza el método Shoot para disparar al tablero del rival. Por último se pasa el status 
+        //del jugador de turno a Waiting, el status del enemigo a OnTurn y se suma 1 a los turnos del match.
         public void PlayerMove(Player player, Player enemigo)
         {
             string message;
