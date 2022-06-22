@@ -11,7 +11,9 @@ namespace Library.Test
         {
             this.submarine = new Submarine();
         }
-
+        /// <summary>
+        /// Test de atributos del barco /Tamano, id y nombre
+        /// </summary>
 
         [Test]
         public void SubmarineLenghtTest()
