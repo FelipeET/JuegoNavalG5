@@ -5,7 +5,7 @@ using System;
 namespace Library.Test
 {
     public class BoardTest
-    {
+    {   
         private Board board;
         [SetUp]
         public void Setup()
@@ -14,6 +14,9 @@ namespace Library.Test
             this.board.BuildBoard();    
         }
 
+        /// <summary>
+        /// Se encarga de testear el tamano del tablero, el cual es 6.<see cref="BoardLenghtTest"/>
+        /// </summary>
         [Test]
         public void BoardLengthTest()
         {
@@ -21,6 +24,9 @@ namespace Library.Test
             Assert.AreEqual(expected, board.Length);
         }
 
+        /// <summary>
+        /// Se encarga de testear el la cantidad de barcos del tablero, el cual es 4.<see cref="OnBoardBoatTest"/>
+        /// </summary>
         [Test]
         public void OnBoardBoatTest()
         {
@@ -28,6 +34,9 @@ namespace Library.Test
             Assert.AreEqual(expected, board.OnBoardBoats);
         }
 
+        /// <summary>
+        /// Se encarga de testear el si se armo correctamente el tablero sin barcos, el cual debera ser 0 en todos los valores.<see cref="OnBoardBoatTest"/>
+        /// </summary>
         [Test]
         public void BoardCheckTest()
         {
@@ -41,7 +50,10 @@ namespace Library.Test
                 Checker= false;
             }
             Assert.AreEqual(true, Checker);
-        }             
+        }
+        /// <summary>
+        /// Se encarga de testear si se pueden agregar barcos.<see cref="AddBoatVesselTest"/>
+        /// </summary>           
         [Test]
         public void AddBoatVesselTest()
         {  
@@ -50,6 +62,9 @@ namespace Library.Test
             int expected = 1;
             Assert.AreEqual(expected,board.GetBoard()[2,2]);
         }
+        /// <summary>
+        /// Se encarga de testear si se pueden agregar barcos.<see cref="AddBoatSubmarineTest"/>
+        /// </summary>
         [Test]
         public void AddBoatSubmarineTest()
         {  
@@ -58,6 +73,9 @@ namespace Library.Test
             int expected = 2;
             Assert.AreEqual(expected,board.GetBoard()[3,3]);
         }
+        /// <summary>
+        /// Se encarga de testear si se pueden agregar barcos.<see cref="AddBoatDestructorTest"/>
+        /// </summary>
         [Test]
         public void AddBoatDestructorTest()
         {  
@@ -66,6 +84,9 @@ namespace Library.Test
             int expected = 3;
             Assert.AreEqual(expected,board.GetBoard()[3,3]);
         }
+        /// <summary>
+        /// Se encarga de testear si se pueden agregar barcos.<see cref="AddBoatCarrierTest"/>
+        /// </summary>
         [Test]
         public void AddBoatCarrierTest()
         {  

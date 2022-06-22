@@ -30,7 +30,8 @@ namespace Library.Test
         public void PlayerVPAddTest()
         {
             playerT.AddVp(3);
-            const int expected = 3;
+            playerT.AddVp(5);
+            const int expected = 8;
             Assert.AreEqual(expected, playerT.VP);
         }
         /*

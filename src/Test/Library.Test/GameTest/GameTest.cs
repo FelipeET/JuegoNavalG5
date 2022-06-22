@@ -7,7 +7,9 @@ namespace Library.Test
     {
         private Player p1= new Player("A");
         private Player p2= new Player("B");
-
+        /// <summary>
+        ///  Test de return de las clases player.
+        /// </summary>
         [Test]
         public void Player1Test()
         { 

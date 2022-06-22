@@ -12,7 +12,9 @@ namespace Library.Test
             this.vessel = new Vessel();
         }
 
-
+        /// <summary>
+        /// Test de atributos del barco /Tamano, id y nombre
+        /// </summary>
         [Test]
         public void VesselLenghtTest()
         {
