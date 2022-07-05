@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Collections.Generic;
 
 //clase que nos permitirá guardar los datos de cada partida que se juegue.
@@ -42,4 +42,4 @@ namespace PII_Batalla_Naval
             CantGames++;
         }
     }
-}
+}*/

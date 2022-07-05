@@ -253,6 +253,13 @@ namespace PII_Batalla_Naval
             }
         }
 
+        public int Turn
+        {
+            get{
+                return Turns;
+            }
+        }
+
         /*public string Password
         {
             get
