@@ -135,6 +135,7 @@ Game: clase que reúne a dos jugadores que desean participar del juego y los col
 	    -print2: instancia de PrintBoard encargada de imprimir el tablero del jugador 2.
         -printPlayer1: instancia de PrintRivalBoard encargada de imprimir el tablero del jugador 2 según el punto de vista del jugador 1. 
         -printPlayer2: instancia de PrintRivalBoard encargada de imprimir el tablero del jugador 1 según el punto de vista del jugador 2.
+        -info: instancia de MatchInfo que nos permitirá guardar los datos de la partida.
     Sus metodos son:
         -AppealForBoats: Recibe un jugador como parámetro. En base a el valor de BoatsReady del tablero de dicho jugador s entra en un bloque switch. En caso de que sea:
         -0 se agrega un Porta Aviones.

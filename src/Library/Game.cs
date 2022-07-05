@@ -34,6 +34,9 @@ namespace PII_Batalla_Naval
         //según el punto de vista del jugador 2.
         private PrintRivalBoard printPlayer2;
 
+        //instancia de MatchInfo que nos permitirá guardar los datos de la partida.
+        public MatchInfo info;
+
         private string message;
 
 

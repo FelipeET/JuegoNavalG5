@@ -81,6 +81,9 @@ namespace PII_Batalla_Naval
                 Console.WriteLine($"Los Putos de Victoria de {match.Game.P1.Name} son: {match.Game.P1.VP}");
             }
 
+            match.Game.info.GamesPlayed();
+            match.Game.info.AddInfo(match.Game);
+
             match.Game.P1.PlayerBoard.ResetBoard();
             match.Game.P2.PlayerBoard.ResetBoard();
             match.Game.ChangePhase(GamePhase.GameEnds);
