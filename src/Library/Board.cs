@@ -34,15 +34,6 @@ namespace PII_Batalla_Naval
         //(esto funciona pues en nuestro juego se agregan  los barcos siempre en el mismo orden).
         private int boatsReady = 0;
 
-        /*
-        REVISAR PARAR ENTREGA FINAL:
-        public int VesselOnBoard = 0;
-        public int SubmarieOnBoard = 0;
-        public int DestructorOnBoard = 0;
-        public int CarrierOnBoard = 0;
-        */
-
-        //para los tests
         public int x;
         public int y;
         public int EachChecker=36;
@@ -67,7 +58,6 @@ namespace PII_Batalla_Naval
             BoardChecker(); 
         }
 
-        //para tests
         public void BoardChecker()
         {    
             for (y=0; y < 6; y++)
@@ -78,7 +68,7 @@ namespace PII_Batalla_Naval
                     {
                         if (this.board[x,y]!=0)
                         {
-                            throw new BuildBoardCheckerException("Build Board error: Not all positions were Water while building the board.");
+                            throw new BuildBoardCheckerException("Error al construir el tablero, se recomienda reiniciar el juego");
                         }
                         else
                         {
@@ -242,54 +232,6 @@ namespace PII_Batalla_Naval
                 }
             } 
         }
-
-        /*
-        REVISAR PARA ENTREGA FINAL
-        public void CountSunkens(Board board, int x, int y)
-        {
-            if (board.GetBoard()[x,y] == 1)
-            {
-                board.VesselOnBoard++;
-            }
-            if (board.GetBoard()[x,y] == 2)
-            {
-                board.SubmarieOnBoard++;
-            }
-            if (board.GetBoard()[x,y] == 3)
-            {
-                board.DestructorOnBoard++;
-            }
-            if (board.GetBoard()[x,y] == 4)
-            {
-                board.CarrierOnBoard++;
-            }
-        }
-        
-
-        public void IsSunken(Board board)
-        {
-            if (board.VesselOnBoard == 1)
-            {
-                Console.WriteLine("Buque undido!");
-            }
-            else if (board.SubmarieOnBoard == 2)
-                {
-                    Console.WriteLine("Submarino undido!");
-                }
-                else if (board.DestructorOnBoard == 3)
-                    {
-                        Console.WriteLine("Destructor undido!");
-                    }
-                    else if (board.CarrierOnBoard == 4)
-                        {
-                            Console.WriteLine("Porta Aviones undido!");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Tocado!");
-                        }   
-        }
-        */
         
         //nos permite reiniciar los valores de ciertos atributos de Board (hittCounter, count, boatsReady) 
         //además de volver a colocar todas las casillas de tablero en 0 (BuildBoard). 
@@ -299,10 +241,6 @@ namespace PII_Batalla_Naval
             this.hitCounter = 0;
             this.count = 0;
             this.boatsReady = 0;
-            //this.VesselOnBoard = 0;
-            //this.SubmarieOnBoard = 0;
-            //this.DestructorOnBoard = 0;
-            //this.CarrierOnBoard = 0;
             BuildBoard();
         }
 

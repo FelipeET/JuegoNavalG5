@@ -105,18 +105,18 @@ namespace PII_Batalla_Naval
                         if (x < 0 || x > 5 || y < 0 || y > 5)
                         {
                             //Console.WriteLine("PRUEBA 3");
-                            throw new Exception("recuerda que las coordenadas deben ser numeros entre 0 y 5");
+                            throw new IndexCheckerException("recuerda que las coordenadas deben ser numeros entre 0 y 5");
                         }
                         //Console.WriteLine("PRUEBA 4");
                         if (!player.PlayerBoard.NotOcuppied(x,y))
                         {
                             //Console.WriteLine("PRUEBA 5");
-                            throw new Exception("posicion ya ocupada, intente nuevamente");
+                            throw new FreePositionCheckerException("Posicion ya ocupada, intente nuevamente");
                         }
                         else if (!player.PlayerBoard.InLimits(x, y))
                         {
                             //Console.WriteLine("PRUEBA 6");
-                            throw new Exception("posicion fuera de limites, intente nuevamente");   
+                            throw new LimitsCheckerException("Posicion fuera de limites, intente nuevamente");   
                         }
                         else{
                             test = true;
@@ -252,20 +252,5 @@ namespace PII_Batalla_Naval
                 return phase;
             }
         }
-
-        public int Turn
-        {
-            get{
-                return Turns;
-            }
-        }
-
-        /*public string Password
-        {
-            get
-            {   
-                return password;
-            }
-        }*/
     }
 }

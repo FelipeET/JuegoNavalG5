@@ -159,6 +159,13 @@ MatchInfo: clase que nos permitirá guardar los datos de cada partida que se jue
 	    -ShowGameInfo: Imprime los datos de cada partida jugada hasta el momento.
 	    -GamesPlayed: suma 1 al valor de CantGames cada vez que termina una partida.
 
+Exceptions:
+    -BuildBoardCheckerException: se devuelve cuando el tablero no se contruye correctamente.
+    -CoordinatesCheckerException: se devuelve si las coordenas imgresadas son invalias.
+    -FreePositionCheckerException: se devuelve si la posicion no esta libre al intentar ageregar un barco.
+    -LimitsCheckerException: se devuelve si se intenta ejecutar un aaccion que implique estar por fuera de los limites de tamaño dle tablero.
+    -OrientationCheckerException: se devuelve cuando se ingresa una orientacion invalida.
+
 Tests (creados por Felipe Etchevers y Joaquin Gasco) 
 
 Extras agregadas por el equipo:
