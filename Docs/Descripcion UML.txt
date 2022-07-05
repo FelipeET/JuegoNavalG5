@@ -14,12 +14,64 @@ Boats:
 Enums:
     Orientation: Contiene los enumerados Horizontal y Vertical, cuya función es ayudar no solo ayudar al usuario a elegir como colocar su barco, sino que los métodos lógicos del juego también los requieren para su correcto funcionamiento. 
     Status: Contiene los enumerados OnTurn y Waiting, cuya finalidad es ayudar a los métodos lógicos del juego a funcionar correctamente.
+    GamePhase: Contiene los enumerados GameEmpty, CraetingGame, Player1SetingBoard, Player2SetingBoard, GameRunning y GameEnds, cuya funcion es ayudar al control de interacciones dentro de la Chain of Responsibility. 
 
 Handlers: 
-    BotInConsole: Nos permite una primera interacción con el usuario, pidiéndole que ingrese un comando en base a lo que este desea hacer. En caso de querer jugar se le pide ingresar “/jugar”, en caso de querer salir del juego se le pide ingresar “/salir”. Si se ingresa un comando inválido o vacio se le pedirá al usuario intentar nuevamente. Cabe destacar que la idea para esta clase es utilizar una cadena de Handlers (objetivo primordial para la última entrega).
-    Obs1: Si el usuario ingresa “/jugar”, se pedirá el nombre de los dos jugadores, se iniciara el posicionamiento de barcos de estos dos y acto seguido la batalla dará comienzo.
-	Obs2: Si el usuario ingresa “/salir”, el juego terminará.
-    Obs3: Las clases BaseHandler, HandlerSetGame, StartGameHandler, UnknownCommandHandler y la interfaz IHandler permanecerán comentadas hasta que se comience con la implementación de los Handlers. 
+    BotInConsole: Nos permite una primera interacción con el usuario, pidiéndole que ingrese un comando en base a lo que este desea hacer. En caso de querer jugar se le pide ingresar “/jugar”, en caso de querer salir del juego se le pide ingresar “/salir”. Si se ingresa un comando inválido o vacio se le pedirá al usuario intentar nuevamente.
+        Obs1: Si el usuario ingresa “/jugar”, se iniciara la Chain of Responsibility.
+	    Obs2: Si el usuario ingresa “/salir”, el juego terminará.
+
+    IHandler: Interfaz para implementar el patrón Chain of Responsibility. En ese patrón se pasa un mensaje a través de una
+              cadena de "handlers" que pueden procesar o no el mensaje. Cada "handler" decide si procesa el mensaje, o si se lo
+              pasa al siguiente. Esta interfaz define un atributo para definir el próximo "handler" y una una operación para
+              recibir el mensaje y pasarlo al siguiente "handler" en caso que el mensaje no sea procesado. La responsabilidad de
+              decidir si el mensaje se procesa o no, y de procesarlo, se realiza en las clases que implementan esta interfaz.
+              La interfaz se crea en función del principio de inversión de dependencias, para que los clientes de la cadena de
+              responsabilidad, que pueden ser concretos, no dependan de una clase "handler" que potencialmente es abstracta.
+              Contiene: el atributo IHandler Next { get; set; } y los metodos Handle y Cancel.
+
+    BaseHandler: Clase base para implementar el patrón Chain of Responsibility. En ese patrón se pasa un mensaje a través de una
+                 cadena de "handlers" que pueden procesar o no el mensaje. Cada "handler" decide si procesa el mensaje, o si se lo
+                 pasa al siguiente. Esta clase base implmementa la responsabilidad de recibir el mensaje y pasarlo al siguiente
+                 "handler" en caso que el mensaje no sea procesado. La responsabilidad de decidir si el mensaje se procesa o no, y
+                 de procesarlo, se delega a las clases sucesoras de esta clase base.
+                 Contiene: el atributo keywords y los metodos InternalHandle y InternalCancel (ademas de contener todo lo necesario al implementar la interfaz IHandler).
+
+    StartHandler: Un "handler" del patrón Chain of Responsibility que implementa el comando "/jugar".
+                  Inicializa una nueva instancia de la clase "StartHandler". Esta clase procesa el mensaje "/jugar".
+                  Procesa el mensaje "/jugar" y retorna true; retorna false en caso contrario.
+                  Hereda de la clase BaseHandler.
+
+    GoodByeHandler: Un "handler" del patrón Chain of Responsibility que implementa el comando "/salir".
+                    Inicializa una nueva instancia de la clase "GoodByeHandler". Esta clase procesa el mensaje "/salir".
+                    Procesa el mensaje "/salir" y retorna true; retorna false en caso contrario.
+                    Hereda de la clase BaseHandler.
+    
+    CreateGameHandler: Un "handler" del patrón Chain of Responsibility que implementa el comando "/crear".
+                       Inicializa una nueva instancia de la clase "CreateGameHandler". Esta clase procesa el mensaje "/crear".
+                       Procesa el mensaje "/crear" y retorna true; retorna false en caso contrario.
+                       Hereda de la clase BaseHandler.
+    
+    StartPlaceingBoatsHandler: Un "handler" del patrón Chain of Responsibility que implementa el comando "/iniciar".
+                               Inicializa una nueva instancia de la clase "StartPlaceingBoatsHandler". Esta clase procesa el mensaje "/iniciar".
+                               Procesa el mensaje "/iniciar" y retorna true; retorna false en caso contrario.
+                               Hereda de la clase BaseHandler.
+
+    SetBoatsHandler: Un "handler" del patrón Chain of Responsibility que implementa el comando "/colocar".
+                     Inicializa una nueva instancia de la clase "SetBoatsHandler". Esta clase procesa el mensaje "/colocar".
+                     Procesa el mensaje "/colcoar" y retorna true; retorna false en caso contrario.
+                     Hereda de la clase BaseHandler.
+
+     StartBattleHandler: Un "handler" del patrón Chain of Responsibility que implementa el comando "/batalla".
+                         Inicializa una nueva instancia de la clase "StartBattleHandler". Esta clase procesa el mensaje "/batalla".
+                         Procesa el mensaje "/batalla" y retorna true; retorna false en caso contrario.
+                         Hereda de la clase BaseHandler.
+
+    PlayingHandler: Un "handler" del patrón Chain of Responsibility que implementa el comando "/disparar".
+                    Inicializa una nueva instancia de la clase "PlayingHandler". Esta clase procesa el mensaje "/disparar".
+                    Procesa el mensaje "/disparar" y retorna true; retorna false en caso contrario.
+                    Hereda de la clase BaseHandler.
+
 
 Player: Esta clase se utiliza para representar a los jugadores que participan en la batalla. Los atributos que estos poseen son:
         -Name: indica el nombre del jugador, el cual usaremos para identificarlo.
@@ -78,29 +130,22 @@ Game: clase que reúne a dos jugadores que desean participar del juego y los col
 	    -p2: referencia al jugador 2.
 	    -Turns: indica el turno en el cual se encuentra la partida.
 	    -winner: indica el ganador de dicha partida.
- 
-Logic: clase que contiene el funcionamiento lógico de la partida (para esto utiliza métodos locales y otros pertenecientes a otras clases).
-    Sus atributos: 
-	    -Match: referencia al Game que esta por llevarse a cabo.
-	    -print1: instancia de PrintBoard encargada de imprimir el tablero del jugador 1.
+        -phase: indica en que fase del juego se estra (ayuda a los handlers).
+        -print1: instancia de PrintBoard encargada de imprimir el tablero del jugador 1.
 	    -print2: instancia de PrintBoard encargada de imprimir el tablero del jugador 2.
         -printPlayer1: instancia de PrintRivalBoard encargada de imprimir el tablero del jugador 2 según el punto de vista del jugador 1. 
-        -printPlayer2: instancia de PrintRivalBoard encargada de imprimir el tablero del jugador 1 según el punto de vista del jugador 2. 
-        -info: instancia de MatchInfo que nos permitirá guardar los datos de la partida.
-    Sus métodos:
-    -LogGame: consta de los bucles while. El primero permite al jugador 1 colocar todos los barcos que le corresponden en su tablero. El segundo hace lo mismo pero para el jugador 2. Ambos bucles usan al método AppealForBoats.
-    -LetsPlay: consta de un bucle while principal que se ejecuta mientras que el tablero de uno de los jugadores no haya recibido  10 hits a barcos o mas (en este caso todos los barcos en ese tablero estarían hundidos).  Dentro de este bucle se invoca el método StatusOnTurn para el jugador 1 (lo deja habilitado para entrar a su turno), después se inicia un bucle while el cual se mantiene mientras que el jugador 1 este habilitado a jugar (su status debe ser OnTurn) e invoca al método PlayerMove que habilita la interacción de el jugador de turno con su enemigo. El siguiente bucle while hace lo mismo pero tomando al jugador 2 como el jugador de turno.
-     Una vez que se sale del while principal se indica que la partida termino y dependiendo de quién sea el ganador se procede a realizar las acciones correspondientes. Para finalizar se guarda la información final de la partida y se reinicia el tablero de ambos jugadores.
-    -GetOri: dependiendo de lo ingresado por el usuario en consola retorna una Orientation.
-    -AppealForBoats: Recibe un jugador como parámetro. En base a el valor de BoatsReady del tablero de dicho jugador s entra en un bloque switch. En caso de que sea:
+        -printPlayer2: instancia de PrintRivalBoard encargada de imprimir el tablero del jugador 1 según el punto de vista del jugador 2.
+    Sus metodos son:
+        -AppealForBoats: Recibe un jugador como parámetro. En base a el valor de BoatsReady del tablero de dicho jugador s entra en un bloque switch. En caso de que sea:
         -0 se agrega un Porta Aviones.
         -1 se agrega un Destructor.
         -2 se agrega un Submarino.
         -3 se agrega un Buque.
-        Obs1: en cada bloque caso se crea el barco que se pretende agregar al tablero y se le pide al jugador ingresar una coordenada y una orientación para dicho barco.
-        Obs2: se utiliza un bloque try – catch para lidiar con posibles errores del usuario al intentar cumplir lo especificado en Obs1.
-        El bloque default imprime "Todos los barcos listos".
-    -PlayerMove: recibe dos Player como parámetros (el jugador de turno y el enemigo respectivamente). Mientras que no se está al menos en el turno 3 de la partida usa PrintHidden para imprimri el tablero del rival (pues en teoría todavía ambos jugadores no han realizado movimientos contra su rival), una vez superado el turno 2 ya se utiliza enemy.PrintInScreen para imprimri el tablero rival. Se le pide al jugador de turno ingresar una coordenada para disparar (se implementa un bloque try – catch para lidiar con posibles errores en esta interacción). Después se utiliza el método Shoot para disparar al tablero del rival. Por último se pasa el status del jugador de turno a Waiting, el status del enemigo a OnTurn y se suma 1 a los turnos del match.
+            Obs1: en cada bloque caso se crea el barco que se pretende agregar al tablero y se le pide al jugador ingresar una coordenada y una orientación para dicho barco.
+            Obs2: se utiliza un bloque try – catch para lidiar con posibles errores del usuario al intentar cumplir lo especificado en Obs1.
+            El bloque default imprime "Todos los barcos listos".
+        -PlayerMove: recibe dos Player como parámetros (el jugador de turno y el enemigo respectivamente). Mientras que no se está al menos en el turno 3 de la partida usa PrintHidden para imprimri el tablero del rival (pues en teoría todavía ambos jugadores no han realizado movimientos contra su rival), una vez superado el turno 2 ya se utiliza enemy.PrintInScreen para imprimri el tablero rival. Se le pide al jugador de turno ingresar una coordenada para disparar (se implementa un bloque try – catch para lidiar con posibles errores en esta interacción). Después se utiliza el método Shoot para disparar al tablero del rival. Por último se pasa el status del jugador de turno a Waiting, el status del enemigo a OnTurn y se suma 1 a los turnos del match.
+        -GetOri: dependiendo de lo ingresado por el usuario en consola retorna una Orientation.
 
 MatchInfo: clase que nos permitirá guardar los datos de cada partida que se juegue.
     Sus atributos: 
@@ -116,7 +161,7 @@ MatchInfo: clase que nos permitirá guardar los datos de cada partida que se jue
 Tests (creados por Felipe Etchevers y Joaquin Gasco) 
 
 Extras agregadas por el equipo:
--Poderes (Powers).
+-Poderes (Powers): le permitiria a cada jugador usar una habilidad que le de cierta ventaja durante el juego (atacar en area o revelar cierta area del tabero rival, por ejemplo).
 -Ranking (Ranking de jugadores) -> se intenta al agregar mediante el uso de los Vp en los Players. 
 -IA(Bot rival). 
 -3 Dificultades del tablero.

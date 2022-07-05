@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eT+b56KFKYKvKubTrhcUxSrSch3peoicSaCif1nHC/n4WShpxeDEIAnk/c9cTTSRGdkfFcBn4wPeidMFBCrjkw==",
+  "dgSpecHash": "yP4iRQXzwtlUZxsVk9bJaGRO4ibfPUD92C426el5yBIQM2CA5taOklM7mcR5B3hjR7IBa/AM06tZNYeH6LlWYw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\BSP2 LAST\\JuegoNavalG5\\src\\Program\\Program.csproj",
+  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\BN\\JuegoNavalG5\\src\\Program\\Program.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",

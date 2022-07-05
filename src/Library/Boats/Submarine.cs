@@ -1,9 +1,9 @@
 //Implementa IBoat (nombre: Submarino, id: 2 y longitud del barco: 2).
 public class Submarine : IBoat
 {
-    private int id = 2;
-    private int boatLenght = 2;
-    private string name = "Submarino";
+    private static int id = 2;
+    private static int boatLenght = 2;
+    private static string name = "Submarino";
 
     public int ID{
         get{

@@ -26,6 +26,24 @@ namespace PII_Batalla_Naval
             this.playerBoard.BuildBoard();
         }
 
+        //este método nos habilita a asignar el enumerado Status.OnTurn al atributo PlayerStatus.
+        public void StatusOnTurn()
+        {
+            playerStatus = Status.OnTurn;
+        }
+        
+        //este método nos habilita a asignar el enumerado Status.Waiting al atributo PlayerStatus.
+        public void StatusWaiting()
+        {
+            playerStatus = Status.Waiting;
+        }
+
+        //este método nos permite aumentar los Vp de cada jugador.
+        public void AddVp (int vpToAdd)
+        {
+            this.vp += vpToAdd;
+        }
+
         public string Name
         {
             get {
@@ -56,24 +74,6 @@ namespace PII_Batalla_Naval
                 
                 return playerStatus;
             }
-        }
-
-        //este método nos habilita a asignar el enumerado Status.OnTurn al atributo PlayerStatus.
-        public void StatusOnTurn()
-        {
-            playerStatus = Status.OnTurn;
-        }
-        
-        //este método nos habilita a asignar el enumerado Status.Waiting al atributo PlayerStatus.
-        public void StatusWaiting()
-        {
-            playerStatus = Status.Waiting;
-        }
-
-        //este método nos permite aumentar los Vp de cada jugador.
-        public void AddVp (int vpToAdd)
-        {
-            this.vp += vpToAdd;
         }
     }
 }

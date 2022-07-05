@@ -1,4 +1,4 @@
-/*
+
 using System;
 using System.Linq;
 
@@ -52,7 +52,7 @@ namespace PII_Batalla_Naval
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>
         /// <returns>true si el mensaje fue procesado; false en caso contrario</returns>
-        protected virtual bool InternalHandle(string message, out string responder)
+        protected virtual bool InternalHandle(string message, out string response)
         {
             throw new InvalidOperationException("Este método debe ser sobrescrito");
         }
@@ -94,8 +94,9 @@ namespace PII_Batalla_Naval
         /// <returns>El "handler" que procesó el mensaje si el mensaje fue procesado; null en caso contrario.</returns>
         public IHandler Handle(string message, out string response)
         {
-            if (this.InternalHandle(message, out response))
+            if (this.CanHandle(message))
             {
+                this.InternalHandle(message, out response);
                 return this;
             }
             else if (this.Next != null)
@@ -104,6 +105,7 @@ namespace PII_Batalla_Naval
             }
             else
             {
+                response = string.Empty;
                 return null;
             }
         }
@@ -123,4 +125,3 @@ namespace PII_Batalla_Naval
         }
     }
 }
-*/

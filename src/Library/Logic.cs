@@ -1,4 +1,4 @@
-using System;
+/*using System;
 
 //clase que contiene el funcionamiento lógico de la partida 
 //(para esto utiliza métodos locales y otros pertenecientes a otras clases).
@@ -141,7 +141,7 @@ namespace PII_Batalla_Naval
         Obs1: en cada bloque caso se crea el barco que se pretende agregar al tablero y se le pide al jugador ingresar una coordenada y una orientación para dicho barco.
         Obs2: se utiliza un bloque try – catch para lidiar con posibles errores del usuario al intentar cumplir lo especificado en Obs1.
         El bloque default imprime "Todos los barcos listos".
-        */
+        
         public void AppealForBoats(Player player)
         {
             String[] coords;
@@ -296,7 +296,4 @@ namespace PII_Batalla_Naval
             Match.Turns++;
         }
     }
-}  
-
-
-
+} */

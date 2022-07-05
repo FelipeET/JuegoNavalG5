@@ -1,9 +1,9 @@
 //Implementa IBoat (nombre: Destructor, id: 3 y longitud del barco: 3).
 public class Destructor : IBoat
 {
-    private int id = 3;
-    private int boatLength = 3;
-    private string name = "Destructor";
+    private static int id = 3;
+    private static int boatLength = 3;
+    private static string name = "Destructor";
 
     public int ID{
         get{

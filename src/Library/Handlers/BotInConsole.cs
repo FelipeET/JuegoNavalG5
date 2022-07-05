@@ -7,8 +7,8 @@ using System;
 //Cabe destacar que la idea para esta clase es utilizar una cadena de Handlers 
 //(objetivo primordial para la última entrega).
 
-//Obs1: Si el usuario ingresa “/jugar”, se pedirá el nombre de los dos jugadores, 
-//se iniciara el posicionamiento de barcos de estos dos y acto seguido la batalla dará comienzo.
+//Obs1: Si el usuario ingresa “/jugar”, comenzara el juego (ingerasr el nombre de los jugadores, posicionar sus barcos
+//y la batalla en si), esto mediante el recorrido de la cadena de Hanlders.
 //Obs2: Si el usuario ingresa “/salir”, el juego terminará.
 
 namespace PII_Batalla_Naval
@@ -38,52 +38,39 @@ namespace PII_Batalla_Naval
 
         public void StartCommunication()
         {
-            //IHandler handler; //poner cadena de handlers
-
             this.SendMessage("Bienvenido a la Batalla Naval! \nUse un comando: \n> \"/jugar\" para iniciar el juego \n> \"/salir\" para salir del juego");
-            string message = string.Empty;
-            //string response;
+
+            //Cadena de Handlers del patron Chain of Responsibility  
+            IHandler handler = 
+                new StartHandler(
+                new CreateGameHandler(
+                new StartPlaceingBoatsHandler(
+                new SetBoatsHandler(
+                new StartBattleHandler(
+                new PlayingHandler(
+                new GoodByeHandler(null)))))));
+
+            string response;
 
             while (true)
             {
-                message = Console.ReadLine();
+                string message = Console.ReadLine();
+
                 if(message.Equals("/salir", StringComparison.InvariantCultureIgnoreCase))
                 {
                     this.SendMessage("Nos vemos!");
                     break;
                 }
 
-                //IHandler result = handler.Handle(message, out response);
+                IHandler result = handler.Handle(message, out response);
 
                 if (message.Equals("", StringComparison.CurrentCultureIgnoreCase) || message.Equals("/", StringComparison.InvariantCultureIgnoreCase) || message.Equals(" ", StringComparison.InvariantCultureIgnoreCase))
                 {
                     Console.WriteLine("Comando no identificado \nIntenta nuevamente");
                 }
-                
-                if (message.Equals("/jugar", StringComparison.InvariantCultureIgnoreCase))
+                else
                 {
-                    Console.WriteLine("Iniciemos los preparativos... \n");
-
-                    Console.WriteLine("Ingrese el nombre del jugador 1:");
-                    string p1name = Console.ReadLine();
-                    Player p1 = new Player(p1name);
-                    Console.WriteLine("\n");
-                    
-                    Console.WriteLine("Ingrese el nombre del jugador 2:");
-                    string p2name = Console.ReadLine();
-                    Player p2 = new Player(p2name);
-                    Console.WriteLine("\n");
-
-                    Console.WriteLine($"Bienvenidos {p1name} y {p2name}, preparense para iniciar la batalla! \n");
-                    Console.WriteLine("Generando encuentro... \n\n");
-
-                    Logic log = new Logic(new Game(p1, p2));
-                    log.LogGame();
-                    Console.Clear();
-                    log.LetsPlay();
-
-                    Console.WriteLine("Gracias por jugar, vuelvan pronto!");
-
+                    Console.WriteLine(response);
                 }
             }
         }
