@@ -1,12 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ws6PwY0PJqX8/W8yz4XA6g86C0pLyFjZdnA6bNfnEpOmEX7iJQi0bl5qSAhTHyLYVmou7quyGMEjhdLF95aF+A==",
+  "dgSpecHash": "fWYMe+J6qn/gjwtozingV2o4YYuk3ctFVtVx07v6BGu5IsEF3cDtxCbfcmwLS6Ko9pI7Q34rIW1DQjtQb6f3Hg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\BN\\JuegoNavalG5\\src\\Library\\Library.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\Felipe\\OneDrive\\Desktop\\Testes3BN\\JuegoNavalG5\\src\\Library\\Library.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

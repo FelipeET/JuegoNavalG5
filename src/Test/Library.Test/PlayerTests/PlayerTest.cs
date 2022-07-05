@@ -34,37 +34,12 @@ namespace Library.Test
             const int expected = 8;
             Assert.AreEqual(expected, playerT.VP);
         }
-        /*
-        [Test]
-        public void PlayerBoardTest()
-        {
-            Board expected= playerT.PlayerBoard;
-            Assert.AreEqual(expected, playerT.PlayerBoard);
-        }
+
         [Test]
         public void PlayerStatusTest()
         {
-            Status expected= playerT.PlayerStatus; // Waiting OnTurn
-            Assert.AreEqual(expected, playerT.PlayerStatus);
+            Status expected= playerT.PlayerStatus;
+            Assert.AreEqual(expected, Status.OnTurn);
         }
-
-        public void PStatusOnTurnTest()
-        {
-            const Status expected = OnTurn;
-            Assert.AreEqual(expected, playerT.StatusOnTurn);
-        }
-
-        public void PStatusWaitingTest()
-        {
-            const Status expected = Waiting;
-            Assert.AreEqual(expected, playerT.StatusWaiting);
-        }*/
     }
 }
-
-/*      [Test]
-        public void PlayerIDTest()
-        {
-            const string expected = "0";
-            Assert.AreEqual(expected, player.Id);
-        }*/

@@ -93,7 +93,7 @@ namespace Library.Test
             Carrier carrierT = new Carrier();
             this.board.AddBoat(board, 1 , 1 , Orientation.Vertical , carrierT );
             int expected = 4;
-            Assert.AreEqual(expected,board.GetBoard()[1,1]);
+            Assert.AreEqual(expected, board.GetBoard()[1,1]);
         }
     }
 }
