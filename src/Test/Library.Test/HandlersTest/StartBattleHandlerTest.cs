@@ -33,7 +33,7 @@ namespace Library.Test
             match1.Game.ChangePhase(GamePhase.GameRunning);
 
 
-            string expected = "Comando invlaido, intente nuevamente";
+            string expected = string.Empty;
             string response= string.Empty;
             string message="/"; 
             StartBattleHandler A = new StartBattleHandler(null);
