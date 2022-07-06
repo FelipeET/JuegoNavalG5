@@ -29,8 +29,10 @@ namespace PII_Batalla_Naval
                 response = "¡Chau! ¡Qué andes bien!";
                 return true;
             }
-            response = string.Empty;
-            return false;
+            else{
+                response= "Comando invlaido, intente nuevamente";
+                return false;
+            }
         }
     }
 }
