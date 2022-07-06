@@ -45,7 +45,7 @@ namespace Library.Test
             Assert.AreEqual(expected, response);
         }
         [Test]
-        public void ShootCommand2Test()
+        public void InvalidShootCommand2Test()
         { 
             Player playerT1 = new Player("Pepe");
             Player playerT2 = new Player("Papa");
@@ -55,9 +55,9 @@ namespace Library.Test
             match1.Game.P2.StatusOnTurn();
 
 
-            string expected = $"Es el turno de {match1.Game.P2.Name} de atacar (use el comando /disparar)";
+            string expected = "Comando invlaido, intente nuevamente";
             string response= string.Empty;
-            string message="/disparar"; 
+            string message="/a"; 
             PlayingHandler A = new PlayingHandler(null);
             A.Handle(message, out response);
             Assert.AreEqual(expected, response);
