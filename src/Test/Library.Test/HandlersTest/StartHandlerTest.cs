@@ -6,16 +6,14 @@ namespace Library.Test
     public class StartHandlerTest
     {
         [Test]
-        public void JugarCommandTest()
+        public void StartCommandTest()
         { 
-            bool expected = true;
-            string response= "Use el comando /crear para crear una partida";
-            string message="/start"; 
+            string expected = "Use el comando /crear para crear una partida";
+            string response= string.Empty;
+            string message="/jugar"; 
             StartHandler A = new StartHandler(null);
-            //Assert.AreEqual(message, Is.Not.Null);
-            Assert.AreEqual(expected, A.Handle(message, out response));
-
-            
+            A.Handle(message, out response);
+            Assert.AreEqual(expected, response);
         } 
     }
 }
