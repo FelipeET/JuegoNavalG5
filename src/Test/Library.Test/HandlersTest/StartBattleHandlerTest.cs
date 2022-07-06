@@ -21,6 +21,24 @@ namespace Library.Test
             StartBattleHandler A = new StartBattleHandler(null);
             A.Handle(message, out response);
             Assert.AreEqual(expected, response);
-        } 
+        }
+
+        [Test]
+        public void InvalidStartBattleCommandTest()
+        { 
+            Player playerT1 = new Player("Pepe");
+            Player playerT2 = new Player("Papa");
+            Match match1 = Match.Instance;
+            match1.CreateGame(playerT1.Name, playerT2.Name);
+            match1.Game.ChangePhase(GamePhase.GameRunning);
+
+
+            string expected = "Comando invlaido, intente nuevamente";
+            string response= string.Empty;
+            string message="/"; 
+            StartBattleHandler A = new StartBattleHandler(null);
+            A.Handle(message, out response);
+            Assert.AreEqual(expected, response);
+        }  
     }
 }

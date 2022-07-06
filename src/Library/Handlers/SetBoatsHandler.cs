@@ -43,7 +43,7 @@ namespace PII_Batalla_Naval
                 }
                 Console.Clear();
 
-                response = $"{match.Game.P1.Name} a colocado sus barcos, es el turno de {match.Game.P2.Name}. n/Para eso {match.Game.P2.Name} debe usar el comando /colocar ";
+                response = $"{match.Game.P1.Name} a colocado sus barcos, es el turno de {match.Game.P2.Name}. Para eso {match.Game.P2.Name} debe usar el comando /colocar ";
                 match.Game.ChangePhase(GamePhase.Player2SettingBoard);
                 return true;
             }
@@ -57,7 +57,7 @@ namespace PII_Batalla_Naval
                 }
                 Console.Clear();
 
-                response = $"{match.Game.P2.Name} a colocado sus barcos. /n Para comnzar la batalla {match.Game.P1.Name} debe ingresar el comando: /batalla";
+                response = $"{match.Game.P2.Name} a colocado sus barcos. Para comnzar la batalla {match.Game.P1.Name} debe ingresar el comando: /batalla";
                 match.Game.ChangePhase(GamePhase.GameRunning);
                 return true;
             }
