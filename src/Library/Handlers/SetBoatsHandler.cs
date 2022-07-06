@@ -33,7 +33,7 @@ namespace PII_Batalla_Naval
         //dentro de ellos el metodo AppealForBoats.
         protected override bool InternalHandle(string message, out string response)
         {
-            if (message.ToLower().Equals("/colocar") && match.Game.Phase == GamePhase.Player1SetingBoard)
+            if (message.ToLower().Equals("/colocar") && match.Game.Phase == GamePhase.Player1SettingBoard)
             {
                 Console.WriteLine($"Es el turno de {match.Game.P1.Name} para colcoar sus barcos");
                 Console.WriteLine("IMPORTANTE: los barcos se colocan de izquierda a derecha (si la orientacion elegida es horizontal) y de arriba hacia abajo (si la orientacion elegida es vertical), ten esto en cuenta al momento de ingresar las coordenadas y orientacion de tus barcos \n");
@@ -44,10 +44,10 @@ namespace PII_Batalla_Naval
                 Console.Clear();
 
                 response = $"{match.Game.P1.Name} a colocado sus barcos, es el turno de {match.Game.P2.Name}. n/Para eso {match.Game.P2.Name} debe usar el comando /colocar ";
-                match.Game.ChangePhase(GamePhase.Player2SetingBoard);
+                match.Game.ChangePhase(GamePhase.Player2SettingBoard);
                 return true;
             }
-            else if (message.ToLower().Equals("/colocar") && match.Game.Phase == GamePhase.Player2SetingBoard)
+            else if (message.ToLower().Equals("/colocar") && match.Game.Phase == GamePhase.Player2SettingBoard)
             {
                 Console.WriteLine($"Es el turno de {match.Game.P2.Name} para colocar sus barcos");
                 Console.WriteLine("IMPORTANTE: los barcos se colocan de izquierda a derecha (si la orientacion elegida es horizontal) y de arriba hacia abajo (si la orientacion elegida es vertical), ten esto en cuenta al momento de ingresar las coordenadas y orientacion de tus barcos \n"); 

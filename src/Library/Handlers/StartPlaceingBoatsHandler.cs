@@ -30,7 +30,7 @@ namespace PII_Batalla_Naval
             if (message.ToLower().Equals("/iniciar") && match.Game.Phase == GamePhase.CraetingGame)
             {
                 response = $"Es momento de posicionar sus naves jugadores, {match.Game.P1.Name} sera el primero en hacerlo, para eso use el comando: /colocar";
-                match.Game.ChangePhase(GamePhase.Player1SetingBoard);
+                match.Game.ChangePhase(GamePhase.Player1SettingBoard);
                 return true;
             }
             else

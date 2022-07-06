@@ -4,8 +4,8 @@ public enum GamePhase
 {
     GameEmpty,
     CraetingGame, 
-    Player1SetingBoard, 
-    Player2SetingBoard, 
+    Player1SettingBoard, 
+    Player2SettingBoard, 
     GameRunning,
     GameEnds
 }
