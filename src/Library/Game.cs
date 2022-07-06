@@ -252,5 +252,11 @@ namespace PII_Batalla_Naval
                 return phase;
             }
         }
+        public int Turn
+        {
+            get{
+                return Turns;
+            }
+        }
     }
 }
