@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lbAuNU07ccmpFbbJA1HthdWSxSB6OrYzjHi+OTs27LzilG3cB93q7/Gj2y+barpqdMPStZY4Kjn510pw9jvyTQ==",
+  "dgSpecHash": "dPI37AyeStc6r7fEQ986iKqVjgt0a0B/w4ZufOyXfJDOf6fm7sr2okHQIJsae+Bblv6FaafeA9TJFwG4YwwM7g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Felipe\\OneDrive\\Desktop\\Testes3BN\\JuegoNavalG5\\src\\Test\\Library.Test\\HandlersTest\\Library.Test.csproj",
+  "projectFilePath": "C:\\Users\\Felipe\\OneDrive\\Desktop\\DefensaP2 - Copy\\JuegoNavalG5\\src\\Test\\Library.Test\\HandlersTest\\Library.Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Felipe\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
     "C:\\Users\\Felipe\\.nuget\\packages\\microsoft.codecoverage\\16.9.4\\microsoft.codecoverage.16.9.4.nupkg.sha512",

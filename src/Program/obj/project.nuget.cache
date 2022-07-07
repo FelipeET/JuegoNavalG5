@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ashcevv0W5YwOI60VYvh9QKqxbPbLc3RHIxq+UF/wtjSi3o8Urh/33A2evPbum6fTNer1cJfKqXaP/HPidD42Q==",
+  "dgSpecHash": "KVJAmOv+/hXB0AS6r4E+kGHGwjw4FZR71+NtCE2Gp3Nk4p8Ye+mZxLL3vh2BdY1hdXGPC3HRiDMIANhnqD+Ezw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Felipe\\OneDrive\\Desktop\\Testes3BN\\JuegoNavalG5\\src\\Program\\Program.csproj",
+  "projectFilePath": "C:\\Users\\Felipe\\OneDrive\\Desktop\\DefensaP2 - Copy\\JuegoNavalG5\\src\\Program\\Program.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Felipe\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512"
   ],

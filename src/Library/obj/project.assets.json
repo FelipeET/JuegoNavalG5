@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Felipe\\OneDrive\\Desktop\\Testes3BN\\JuegoNavalG5\\src\\Library\\Library.csproj",
+      "projectUniqueName": "C:\\Users\\Felipe\\OneDrive\\Desktop\\DefensaP2 - Copy\\JuegoNavalG5\\src\\Library\\Library.csproj",
       "projectName": "Library",
-      "projectPath": "C:\\Users\\Felipe\\OneDrive\\Desktop\\Testes3BN\\JuegoNavalG5\\src\\Library\\Library.csproj",
+      "projectPath": "C:\\Users\\Felipe\\OneDrive\\Desktop\\DefensaP2 - Copy\\JuegoNavalG5\\src\\Library\\Library.csproj",
       "packagesPath": "C:\\Users\\Felipe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Felipe\\OneDrive\\Desktop\\Testes3BN\\JuegoNavalG5\\src\\Library\\obj\\",
+      "outputPath": "C:\\Users\\Felipe\\OneDrive\\Desktop\\DefensaP2 - Copy\\JuegoNavalG5\\src\\Library\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Felipe\\AppData\\Roaming\\NuGet\\NuGet.Config"

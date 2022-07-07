@@ -15,7 +15,7 @@ namespace PII_Batalla_Naval
         /// <param name="next">El próximo "handler".</param>
         public PlayingHandler(BaseHandler next) : base(next)
         {
-            this.Keywords = new string[] {"/disparar"};
+            this.Keywords = new string[] {"/disparar", "/hits" , "/waters"};
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace PII_Batalla_Naval
                     match.Game.PlayerMove(match.Game.P1, match.Game.P2);
                     match.Game.P1.StatusWaiting();
                     match.Game.P2.StatusOnTurn();
-                    response = $"Es el turno de {match.Game.P2.Name} de atacar (use el comando /disparar)"; 
+                    response = $"Es el turno de {match.Game.P2.Name} de atacar (use el comando /disparar). Si desea ver los contadores escriba /waters o /hits."; 
                     return true;
                 }
                 else if (message.ToLower().Equals("/disparar") && match.Game.P2.PlayerStatus == Status.OnTurn && match.Game.Phase == GamePhase.GameRunning)
@@ -52,9 +52,21 @@ namespace PII_Batalla_Naval
                     match.Game.PlayerMove(match.Game.P2, match.Game.P1);
                     match.Game.P2.StatusWaiting();
                     match.Game.P1.StatusOnTurn(); 
-                    response = $"Es el turno de {match.Game.P1.Name} de atacar (use el comando /disparar)";
+                    response = $"Es el turno de {match.Game.P1.Name} de atacar (use el comando /disparar). Si desea ver los contadores escriba /waters o /hits.";
                     return true;
                 }
+                else if (message.ToLower().Equals("/waters"))
+                {   
+                    int WC= (match.Game.P1.PlayerBoard.WatCounter+ match.Game.P2.PlayerBoard.WatCounter);
+                    response = WC.ToString()+ " golpes al agua. Escriba /disparar para seguir.";
+                    return false;
+                }
+                else if (message.ToLower().Equals("/hits"))
+                {
+                    int HC= (match.Game.P1.PlayerBoard.HitCounter+ match.Game.P2.PlayerBoard.HitCounter);
+                    response = HC.ToString()+ " golpes a barcos. Escriba /disparar para seguir.";
+                    return false;
+                }                    
                 else
                 {
                     response = "Comando invlaido, intente nuevamente";

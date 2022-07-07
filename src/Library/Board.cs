@@ -20,6 +20,7 @@ namespace PII_Batalla_Naval
         //corresponde a la cantidad de golpes a barcos que puede recibir un tablero (10 máximo). 
         //Al finalizar cada partida este contador debe volver a 0.
         private int hitCounter = 0; 
+        private int watCounter = 0;
 
         //es un booleano que indicara true si y solo si todas las posiciones que ocuparía un barco 
         //en proceso de ser colocado son validas. 
@@ -37,7 +38,6 @@ namespace PII_Batalla_Naval
         public int x;
         public int y;
         public int EachChecker=36;
-        
         public Board ()
         {
             int[,] board = new int [lenght,lenght];
@@ -127,6 +127,7 @@ namespace PII_Batalla_Naval
                 {
                     board.GetBoard()[x,y] = 6;
                     Console.WriteLine("Agua!");
+                    board.watCounter++;
                 }
 
                 if(board.GetBoard()[x,y] >= 1 && board.GetBoard()[x,y] <= 4)
@@ -135,7 +136,6 @@ namespace PII_Batalla_Naval
                     board.GetBoard()[x,y] = 5;
                     Console.WriteLine("Tocado!");
                     board.hitCounter++;
-                    //board.IsSunken(board);
                 }
             }
             else 
@@ -241,6 +241,7 @@ namespace PII_Batalla_Naval
             this.hitCounter = 0;
             this.count = 0;
             this.boatsReady = 0;
+            this.watCounter =0;
             BuildBoard();
         }
 
@@ -267,6 +268,12 @@ namespace PII_Batalla_Naval
             get 
             {
                 return hitCounter;
+            }
+        }
+
+        public int WatCounter{
+            get{
+                return watCounter;
             }
         }
 
