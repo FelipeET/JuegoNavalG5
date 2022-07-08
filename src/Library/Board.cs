@@ -34,6 +34,11 @@ namespace PII_Batalla_Naval
         //(esto funciona pues en nuestro juego se agregan  los barcos siempre en el mismo orden).
         private int boatsReady = 0;
 
+        private WaterHits wHits;
+        private BoatsHits bHits;
+        public PrintWaterHitsStats wHitsOnGame;
+        public PrintBoatsHitsStats bHitsOnGame;
+
         public int x;
         public int y;
         public int EachChecker=36;
@@ -42,6 +47,10 @@ namespace PII_Batalla_Naval
         {
             int[,] board = new int [lenght,lenght];
             this.board = board;
+            this.bHits = new BoatsHits();
+            this.wHits = new WaterHits();
+            this.bHitsOnGame = new PrintBoatsHitsStats();
+            this.wHitsOnGame = new PrintWaterHitsStats();
         }
 
         //recibe dos enteros que corresponden a una coordenada. 
@@ -126,28 +135,36 @@ namespace PII_Batalla_Naval
                 if(board.GetBoard()[x,y] == 0)
                 {
                     board.GetBoard()[x,y] = 6;
+                    wHits.CountHits();
                     Console.WriteLine("Agua!");
                 }
 
                 if(board.GetBoard()[x,y] >= 1 && board.GetBoard()[x,y] <= 4)
                 {
-                    //board.CountSunkens(board, y, x);
                     board.GetBoard()[x,y] = 5;
-                    Console.WriteLine("Tocado!");
                     board.hitCounter++;
-                    //board.IsSunken(board);
+                    bHits.CountHits();
+                    Console.WriteLine("Tocado!");
                 }
             }
             else 
             {
                 if (!board.InLimits(x, y))
                 {
-                Console.WriteLine("Posicion invalida, intente nuevamente");
+                    Console.WriteLine("Posicion invalida, intente nuevamente");
                 }
-                else
+                else if (board.GetBoard()[x,y] == 6)
                 {
-                Console.WriteLine("Ya disparatse anteriormente a esta posicion, intenta con otra");
+                    wHits.CountHits();
+                    Console.WriteLine("Ya disparatse anteriormente a esta posicion (AGUA), intenta con otra");
                 }
+                else if (board.GetBoard()[x,y] == 5)
+                {
+                    bHits.CountHits();
+                    Console.WriteLine("Ya disparatse anteriormente a esta posicion (BARCO), intenta con otra");
+                }
+                
+
             }
         }
 
@@ -283,6 +300,22 @@ namespace PII_Batalla_Naval
             get 
             {
                 return boatsReady;
+            }
+        }
+
+        public int WHits
+        {
+            get 
+            {
+                return wHits.Count;
+            }
+        }
+
+        public int BHits
+        {
+            get 
+            {
+                return bHits.Count;
             }
         }
     }

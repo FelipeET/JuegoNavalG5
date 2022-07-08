@@ -15,7 +15,7 @@ namespace PII_Batalla_Naval
         /// <param name="next">El próximo "handler".</param>
         public PlayingHandler(BaseHandler next) : base(next)
         {
-            this.Keywords = new string[] {"/disparar"};
+            this.Keywords = new string[] {"/disparar", "/verBarcos", "/verAgua"};
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace PII_Batalla_Naval
                     match.Game.PlayerMove(match.Game.P1, match.Game.P2);
                     match.Game.P1.StatusWaiting();
                     match.Game.P2.StatusOnTurn();
-                    response = $"Es el turno de {match.Game.P2.Name} de atacar (use el comando /disparar)"; 
+                    response = $"Es el turno de {match.Game.P1.Name} de atacar (use el comando /disparar) \nEn caso de querer ver la cantida de disparos totales (suma entre los dos tableros) que golpearon el agua, use el comando: /verAgua \nEn caso de querer ver la cantida de disparos totales (suma entre los dos tableros) que golpearon una parte de un bote, use el comando: /verBotes";
                     return true;
                 }
                 else if (message.ToLower().Equals("/disparar") && match.Game.P2.PlayerStatus == Status.OnTurn && match.Game.Phase == GamePhase.GameRunning)
@@ -52,7 +52,31 @@ namespace PII_Batalla_Naval
                     match.Game.PlayerMove(match.Game.P2, match.Game.P1);
                     match.Game.P2.StatusWaiting();
                     match.Game.P1.StatusOnTurn(); 
-                    response = $"Es el turno de {match.Game.P1.Name} de atacar (use el comando /disparar)";
+                    response = response = $"Es el turno de {match.Game.P2.Name} de atacar (use el comando /disparar) \n En caso de querer ver la cantida de disparos totales (suma entre los dos tableros) que golpearon el agua, use el comando: /verAgua \n En caso de querer ver la cantida de disparos totales (suma entre los dos tableros) que golpearon una parte de un bote, use el comando: /verBotes";
+                    return true;
+                }
+                else if(message.ToLower().Equals("/verAgua") && match.Game.P1.PlayerStatus == Status.OnTurn )
+                {
+                    match.Game.P1.PlayerBoard.wHitsOnGame.PrintStats(match.Game.P1.PlayerBoard.WHits);
+                    response = "Para continuar con la partida use el comando: /disparar";
+                    return true;
+                }
+                else if(message.ToLower().Equals("/verBarcos") && match.Game.P1.PlayerStatus == Status.OnTurn)
+                {
+                    match.Game.P1.PlayerBoard.bHitsOnGame.PrintStats(match.Game.P1.PlayerBoard.BHits);
+                    response = "Para continuar con la partida use el comando: /disparar";
+                    return true;
+                }
+                else if(message.ToLower().Equals("/verAgua") && match.Game.P2.PlayerStatus == Status.OnTurn )
+                {
+                    match.Game.P2.PlayerBoard.wHitsOnGame.PrintStats(match.Game.P2.PlayerBoard.WHits);
+                    response = "Para continuar con la partida use el comando: /disparar";
+                    return true;
+                }
+                else if(message.ToLower().Equals("/verBarcos") && match.Game.P2.PlayerStatus == Status.OnTurn)
+                {
+                    match.Game.P2.PlayerBoard.bHitsOnGame.PrintStats(match.Game.P2.PlayerBoard.BHits);
+                    response = "Para continuar con la partida use el comando: /disparar";
                     return true;
                 }
                 else

@@ -36,6 +36,10 @@ namespace PII_Batalla_Naval
 
         //instancia de MatchInfo que nos permitirá guardar los datos de la partida.
         public MatchInfo info;
+        /*private WaterHits wHits;
+        private BoatsHits bHits;
+        private PrintWaterHitsStats wHitsOnGame;
+        private PrintBoatsHitsStats bHitsOnGame;*/
 
         private string message;
 
@@ -47,7 +51,11 @@ namespace PII_Batalla_Naval
             this.print1 = new PrintBoard(p1.PlayerBoard, p1.PlayerBoard.Length, p1.PlayerBoard.Length);
             this.print2 = new PrintBoard(p2.PlayerBoard, p2.PlayerBoard.Length, p2.PlayerBoard.Length);
             this.printPlayer1 = new PrintRivalBoard(p2.PlayerBoard, p2.PlayerBoard.Length, p2.PlayerBoard.Length);
-            this.printPlayer2 = new PrintRivalBoard(p1.PlayerBoard, p1.PlayerBoard.Length, p1.PlayerBoard.Length);   
+            this.printPlayer2 = new PrintRivalBoard(p1.PlayerBoard, p1.PlayerBoard.Length, p1.PlayerBoard.Length);
+            /*this.bHits = new BoatsHits();
+            this.wHits = new WaterHits();
+            this.bHitsOnGame = new PrintBoatsHitsStats();
+            this.wHitsOnGame = new PrintWaterHitsStats();*/ 
             this.phase = GamePhase.GameEmpty;
         }
 
@@ -214,7 +222,9 @@ namespace PII_Batalla_Naval
             {
                 Console.WriteLine("Coordenadas invalidas: ", e);
             }
-
+            
+            //wHits.CountHits(enemigo.PlayerBoard, Int32.Parse(coords[0]), Int32.Parse(coords[1]));
+            //bHits.CountHits(enemigo.PlayerBoard, Int32.Parse(coords[0]), Int32.Parse(coords[1]));
             enemigo.PlayerBoard.Shoot(enemigo.PlayerBoard, Int32.Parse(coords[0]), Int32.Parse(coords[1]));
             player.StatusWaiting();
             enemigo.StatusOnTurn();
@@ -258,5 +268,37 @@ namespace PII_Batalla_Naval
                 return Turns;
             }
         }
+
+        /*public int WHits
+        {
+            get
+            {
+                return wHits.Count;
+            }
+        }
+
+        public int BHits
+        {
+            get
+            {
+                return bHits.Count;
+            }
+        }
+
+        public PrintBoatsHitsStats BHitsOnGame
+        {
+            get
+            {
+                return bHitsOnGame;
+            }
+        }
+        public PrintWaterHitsStats WHitsOnGame
+        {
+            get
+            {
+                return wHitsOnGame;
+            }
+        }*/
+        
     }
 }

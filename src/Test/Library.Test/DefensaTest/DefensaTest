@@ -1,0 +1,56 @@
+using NUnit.Framework;
+using PII_Batalla_Naval;
+
+namespace Library.Test
+{
+    public class DefensaTest
+    {
+        [Test]
+        public void BoatsHitsTest()
+        {
+            Board b1 = new Board();
+            b1.BuildBoard();
+            b1.AddBoat(b1, 5, 0, Orientation.horizontal);
+            b1.Shoot(b1, 5, 0);
+            b1.Shoot(b1, 5, 0)
+            int expected = 2;
+            Assert.AreEqual(expected, b1.BHits);
+        }
+
+        [Test]
+        public void WaterHitsTest()
+        {
+            Board b1 = new Board();
+            b1.BuildBoard();
+            b1.AddBoat(b1, 5, 0, Orientation.horizontal);
+            b1.Shoot(b1, 2, 0);
+            b1.Shoot(b1, 2, 0);
+            int expected = 2;
+            Assert.AreEqual(expected, b1.WHits);
+        }
+
+        [Test]
+        public void BoatsHitsClassTest()
+        {
+            Board b1 = new Board();
+            b1.BuildBoard();
+            b1.AddBoat(b1, 5, 0, Orientation.horizontal);
+            b1.Shoot(b1, 5, 0);
+            b1.Shoot(b1,5, 0);
+            int expected = "La cantidad de disparos que han impactado barcos son: 2";
+            Assert.AreEqual(expected, b1.bHitsOnGame.PrintStats(b1.BHits));
+        }
+
+        public void BoatsHitsClassTest()
+        {
+            Board b1 = new Board();
+            b1.BuildBoard();
+            b1.AddBoat(b1, 5, 0, Orientation.horizontal);
+            b1.Shoot(b1, 2, 0);
+            b1.Shoot(b1,2, 0);
+            int expected = "La cantidad de disparos que han impactado el agua son: 2";
+            Assert.AreEqual(expected, b1.wHitsOnGame.PrintStats(b1.WHits));
+        }
+        
+    }
+}
